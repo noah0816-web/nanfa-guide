@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0f4c81">
+<meta name="apple-mobile-web-app-title" content="南法攻略">
+<link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Crect%20width%3D%27100%27%20height%3D%27100%27%20rx%3D%2722%27%20fill%3D%27%230f4c81%27%2F%3E%3Ctext%20x%3D%2750%27%20y%3D%2768%27%20font-size%3D%2754%27%20font-family%3D%27sans-serif%27%20text-anchor%3D%27middle%27%20fill%3D%27%23ffffff%27%3E%E5%8D%97%3C%2Ftext%3E%3C%2Fsvg%3E">
+<title>南法旅行攻略</title>
+<style>
+:root{
+  --navy:#0f4c81;--navy2:#123f6b;--gold:#f0a500;--sand:#f7f3ea;--card:#ffffff;
+  --ink:#23303b;--sub:#5c6b78;--line:#e6e0d4;--sea:#0e7ea0;
+  --ph:#d9534f;--eat:#d97f2f;--bus:#0e7ea0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--sand);line-height:1.6}
+body{padding-bottom:62px}
+/* ===== 顶部 ===== */
+header.hero{background:linear-gradient(160deg,var(--navy),var(--navy2) 60%,#0a3050);color:#fff;padding:24px 14px 16px;position:relative}
+header.hero h1{font-size:24px;letter-spacing:1px}
+header.hero .sub{font-size:13px;color:#cfe3f5;margin-top:4px}
+header.hero .badges{margin-top:10px;font-size:12px;display:flex;flex-wrap:wrap;gap:6px}
+header.hero .badges span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:2px 9px;border-radius:12px}
+/* ===== 顶部时间线导航 ===== */
+nav.tl{position:sticky;top:0;z-index:50;background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.25);overflow-x:auto;white-space:nowrap}
+nav.tl .wrap{display:flex;gap:5px;padding:6px 8px}
+nav.tl button{flex:none;min-width:82px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#d8e7f5;font-size:12px;padding:6px 8px;border-radius:10px;cursor:pointer;font-family:inherit}
+nav.tl button b{display:block;font-size:11px;letter-spacing:.5px;color:#ffd97a}
+nav.tl button.active{background:var(--gold);border-color:var(--gold);color:#2a1f00;font-weight:600}
+nav.tl button.active b{color:#2a1f00}
+/* ===== 页面容器 ===== */
+main{max-width:640px;margin:0 auto;padding:10px 10px 8px}
+.page{display:none}
+.page.active{display:block}
+.section-title{font-size:16px;font-weight:800;color:var(--navy);margin:16px 2px 8px;display:flex;align-items:center;gap:6px}
+.section-title::before{content:'';width:5px;height:17px;background:var(--gold);border-radius:3px;display:inline-block}
+.section-title.first{margin-top:4px}
+/* 引言卡片 */
+.intro-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+/* ===== 通票卡 ===== */
+.ticket{border:2px solid var(--gold);background:linear-gradient(180deg,#fff9ec,#fffefb);border-radius:16px;padding:14px;position:relative}
+.ticket .price{font-size:26px;font-weight:900;color:var(--navy)}
+.ticket .price span{font-size:13px;color:var(--sub);font-weight:400}
+.ticket ul{margin:8px 0 0;padding-left:18px;font-size:13px}
+.ticket ul li{margin-bottom:3px}
+.tag-co{display:inline-block;font-size:10px;background:#e7f3f7;color:#0a5d78;border-radius:8px;padding:1px 6px;margin-left:5px;vertical-align:1px}
+.tag-no{display:inline-block;font-size:10px;background:#fdeceb;color:#a03834;border-radius:8px;padding:1px 6px;margin-left:5px;vertical-align:1px}
+/* ===== 折叠卡片 ===== */
+details.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+details.card summary{list-style:none;padding:12px 14px;cursor:pointer;display:flex;align-items:flex-start;gap:10px;position:relative;background:inherit}
+details.card summary::-webkit-details-marker{display:none}
+details.card summary .ic{font-size:20px;flex:none;width:26px;text-align:center;line-height:1.4}
+details.card summary .tt{flex:1;font-size:15px;font-weight:700;line-height:1.35;padding-right:6px}
+details.card summary .meta{margin-top:3px;font-size:11.5px;color:var(--sub);font-weight:400}
+details.card summary .arrow{position:absolute;right:12px;top:14px;font-size:13px;color:var(--sub);transition:transform .2s}
+details.card[open] summary .arrow{transform:rotate(180deg)}
+details.card .body{padding:4px 14px 12px;border-top:1px solid var(--line);font-size:13.5px;background:#fdfcf8}
+details.card .body p{margin:8px 0}
+details.card .body ul{padding-left:18px;margin:6px 0}
+details.card .body li{margin-bottom:4px}
+details.card .body .t{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.3px;margin-top:8px}
+.graph{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:5px;margin-top:6px}
+.ptile{border:1px solid var(--line);border-radius:10px;padding:7px 8px;font-size:12px;background:#fff}
+.ptile b{display:inline-block;margin-right:4px}
+.icon-tags{margin-top:7px;display:flex;flex-wrap:wrap;gap:5px}
+.pt{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;color:#fff}
+.pt.ph{background:var(--ph)}.pt.eat{background:var(--eat)}.pt.bus{background:var(--bus)}
+.pt.off{background:#8a9299}
+.hr{height:1px;background:var(--line);margin:10px 0}
+.note{background:#fff7e0;border:1px solid #f1dfa8;border-radius:10px;padding:9px 11px;font-size:13px;margin:9px 0}
+.note.warn{background:#fdecea;border-color:#f3c1bf}
+.note.tip{background:#e8f4f8;border-color:#bfddec}
+.note b{color:inherit}
+/* ===== 额外 ===== */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dates{padding:4px}
+.dates .d{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin-bottom:8px;font-size:13px}
+.dates .d b{color:var(--navy)}
+.dates .d .dt{color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.4px}
+.qa{margin-bottom:7px}
+.spacer{height:6px}
+/* ===== 底部tab导航 ===== */
+footer.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:saturate(180%) blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+footer.tabbar .in{max-width:640px;margin:0 auto;display:flex}
+footer.tabbar button{flex:1;border:none;background:none;padding:5px 1px 4px;cursor:pointer;font-family:inherit;color:var(--sub);display:flex;flex-direction:column;align-items:center;gap:0px}
+footer.tabbar button .i{font-size:16px;line-height:1.1}
+footer.tabbar button .t{font-size:9px;font-weight:600;letter-spacing:-.2px}
+footer.tabbar button.active{color:var(--navy)}
+footer.tabbar button.active .t{color:var(--gold);font-weight:800}
+/* ===== 新增模块 ===== */
+.shot-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px}
+.shot{width:100%;min-width:480px;border-collapse:collapse;font-size:12px}
+.shot th,.shot td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;background:#fff}
+.shot th{background:#eef3f8;color:var(--navy);font-weight:700}
+.shot td b{color:#b06000}
+.shot tr td:first-child{white-space:nowrap;font-weight:600}
+.pay-row{display:flex;gap:8px;flex-wrap:wrap}
+.pay-row .cash,.pay-row .card{flex:1;min-width:150px;border-radius:12px;padding:10px 12px;font-size:12.5px}
+.pay-row .cash{background:#fdecea;border:1px solid #f3c1bf}
+.pay-row .card{background:#e8f4f8;border:1px solid #bfddec}
+.pay-row b{display:block;margin-bottom:4px;font-size:13px}
+.pay-row ul{padding-left:16px}
+.pay-row li{margin-bottom:3px}
+/* ---- 一键导航 ---- */
+.navbtns{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.navbtns .nb-l{font-size:12px;font-weight:700;color:var(--navy);margin-right:2px}
+.navbtns a.nb{display:inline-block;text-decoration:none;font-size:12px;font-weight:700;border-radius:8px;padding:7px 11px;color:#fff}
+.navbtns a.nb.g{background:linear-gradient(135deg,#4285F4,#34A853)}
+.navbtns a.nb.a{background:linear-gradient(135deg,#111827,#0F4C81)}
+li .navbtns.small{margin-top:4px;padding-top:4px;border-top:none}
+li .navbtns.small a.nb{padding:4px 9px;font-size:11px}
+/* ---- 新区块：时刻 / 法语 ---- */
+.pg-hero{background:linear-gradient(135deg,#0f4c81,#1e7fb5);color:#fff;border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.pg-hero b{color:#ffd66b}
+.ch-grid{display:flex;flex-direction:column;gap:8px}
+.ch-grid .ch{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px}
+.ch-grid .quo{font-size:20px}
+.ch-grid .ch b{display:block;font-size:13.5px;color:var(--navy)}
+.ch-grid .ch span{font-size:11.5px;color:var(--sub)}
+.stn{display:flex;justify-content:space-between;gap:10px;padding:9px 4px;border-bottom:1px dashed var(--line);font-size:13px}
+.stn:last-child{border-bottom:none}
+.stn b{color:var(--navy);font-weight:600}
+.stn em{font-style:normal;color:var(--gold);font-weight:700;white-space:nowrap}
+.phrase-row{display:grid;grid-template-columns:2fr 2.5fr 2.2fr;gap:4px;align-items:start;padding:8px 2px;border-bottom:1px dashed var(--line)}
+.phrase-row:last-child{border-bottom:none}
+.phrase-row .zh{font-size:13px;font-weight:600;color:var(--navy)}
+.phrase-row .fr{font-size:12px;color:#7a1f1f;font-weight:600}
+.phrase-row .py{font-size:10.5px;color:var(--sub);font-style:italic}
+/* ---- 法语 tab · 在线翻译工具卡 ---- */
+.tr-wrap{display:flex;gap:8px;margin-top:10px}
+.tr-wrap input{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;font-size:15px;font-family:inherit;background:#fff;color:var(--navy)}
+.tr-wrap input:focus{outline:none;border-color:var(--brand,#0f4c81)}
+.tr-btn{border:none;border-radius:12px;padding:0 18px;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,#0f4c81,#1e7fb5);cursor:pointer;white-space:nowrap}
+.tr-cols{display:flex;gap:8px;margin:10px 0 2px}
+.tr-cols a{flex:1;text-align:center;text-decoration:none;color:#fff;border-radius:12px;padding:11px 6px;font-size:13px;font-weight:700}
+.tr-cols a.gt{background:linear-gradient(135deg,#3b74c9,#5f9ae6)}
+.tr-cols a.dl{background:linear-gradient(135deg,#0d6efd,#3f8ff0)}
+.tr-hint{font-size:11px;color:var(--sub);line-height:1.7;margin-top:6px}
+.tr-hint b{color:var(--navy)}
+
+/* ===== iPhone 13 Pro 适配 (≤430px) ===== */
+@media screen and (max-width: 430px) {
+  header.hero{padding:20px 12px 14px}
+  header.hero h1{font-size:20px}
+  header.hero .sub{font-size:11.5px}
+  header.hero .badges{font-size:10.5px;gap:4px}
+  header.hero .badges span{padding:2px 7px}
+  nav.tl .wrap{gap:4px;padding:5px 6px}
+  nav.tl button{min-width:68px;font-size:10.5px;padding:5px 6px;border-radius:8px}
+  nav.tl button b{font-size:10px}
+  main{padding:8px 8px 6px}
+  .section-title{font-size:15px;margin:14px 1px 6px;gap:5px}
+  .section-title::before{width:4px;height:14px}
+  details.card{border-radius:12px;margin:8px 0}
+  details.card summary{padding:10px 12px;gap:8px}
+  details.card summary .ic{font-size:18px;width:22px}
+  details.card summary .tt{font-size:14px}
+  details.card summary .arrow{right:10px;top:11px;font-size:11px}
+  details.card .body{padding:4px 10px 10px;font-size:12.5px}
+  .ticket{padding:12px;border-radius:14px}
+  .ticket .price{font-size:22px}
+  .phrase-row{grid-template-columns:1.8fr 2.5fr 2fr;gap:3px;padding:6px 1px}
+  .phrase-row .zh{font-size:12px}
+  .phrase-row .fr{font-size:11px}
+  .phrase-row .py{font-size:9.5px}
+  .stn{font-size:12px;padding:7px 2px}
+  .stn em{font-size:11px}
+  .pay-row{gap:6px}
+  .pay-row .cash,.pay-row .card{min-width:130px;padding:8px 10px;font-size:11.5px}
+  .pay-row b{font-size:12px}
+  .graph{grid-template-columns:repeat(2,1fr);gap:4px}
+  .ptile{padding:6px 7px;font-size:11px;border-radius:8px}
+  .intro-card{padding:8px 10px;font-size:12px;border-radius:10px}
+  .note{padding:7px 9px;font-size:12px}
+  .navbtns{gap:4px;margin-top:8px;padding-top:8px}
+  .navbtns a.nb{padding:5px 9px;font-size:11px}
+  .tr-wrap{gap:6px}
+  .tr-wrap input{padding:9px 10px;font-size:14px}
+  .tr-btn{padding:0 14px;font-size:13px}
+  .tr-cols{gap:6px}
+  .tr-cols a{padding:9px 5px;font-size:12px}
+  footer.tabbar button{padding:4px 1px 3px}
+  footer.tabbar button .i{font-size:15px}
+  footer.tabbar button .t{font-size:8.5px}
+  body{padding-bottom:54px}
+  .pg-hero{padding:12px 14px;font-size:13px;border-radius:12px}
+  .ch-grid .ch{padding:8px 10px}
+  .ch-grid .ch b{font-size:12.5px}
+  .ch-grid .ch span{font-size:10.5px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- 手机端兼容提示：独立内联样式 + 内联关闭，任何 JS 异常都不影响显示 -->
+<div class="safari-tip" id="safari-tip" style="position:sticky;top:0;z-index:999;display:flex;align-items:center;gap:8px;padding:6px 12px;background:#0f4c81;color:#fff;font-size:12px;line-height:1.5;box-shadow:0 1px 4px rgba(0,0,0,.15)">
+  <span>📱 请在 <b>Safari</b> 打开本页面，获得最佳的导航 / 翻译跳转体验</span>
+  <span onclick="var p=document.getElementById('safari-tip');if(p){p.style.display='none'}" style="margin-left:auto;flex:0 0 auto;cursor:pointer;padding:0 6px;font-size:16px;line-height:1">✕</span>
+</div>
+
+<header class="hero">
+  <h1>南法旅行攻略</h1>
+  <div class="sub">9/27→10/3 · 上海-赫尔辛基-尼斯 · 昂蒂布 · 东线一日</div>
+  <div class="badges">
+    <span>📶 离线可用</span><span>📷 打卡 · 🍽 吃饭 · 🚉 交通</span><span>通票 €50/7天</span>
+  </div>
+</header>
+
+<nav class="tl" id="timeline">
+  <div class="wrap">
+    <button data-tab="page-home"><b>总览</b>9·27-10·3</button>
+    <button data-tab="page-hel"><b>赫尔辛基</b>9·28 转机</button>
+    <button data-tab="page-nice"><b>尼斯</b>9·28-30</button>
+    <button data-tab="page-antibes"><b>昂蒂布·戛纳</b>9·30-10·2</button>
+    <button data-tab="page-east"><b>东线一日</b>10·2</button>
+    <button data-tab="page-transit"><b>🚉 时刻</b>火车·别误点</button>
+    <button data-tab="page-phrase"><b>🇫🇷 法语</b>离线短语卡</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ================= 总览 ================= -->
+<section class="page active" id="page-home">
+
+  <div class="intro-card">✈️ 9/27 上海浦东 AY88 起飞 → 9/28 05:55 抵赫尔辛基（转机约7.5h）→ AY1603 15:55 → 18:25 抵尼斯。9/28–30 尼斯3晚，9/30–10/2 昂蒂布2晚，10/2 东线一日（含罗克布吕讷 Roquebrune-Cap-Martin），10/3 上午 CAP3000 → AY1604 约 19:00 返程（⚠️ 航班时刻请核对票面，详见「航班核实」）。</div>
+  <div class="spacer"></div>
+  <details class="card" open>
+    <summary><span class="ic">🗓️</span><span class="tt">行程时间线<span class="meta">点击日期查看去向</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="dates">
+        <div class="d"><div class="dt">9/27 · 周日</div><b>出发</b><br>上海浦东，AY88 起飞，飞往赫尔辛基。</div>
+        <div class="d"><div class="dt">9/28 · 周一</div><b>05:55 抵赫尔辛基 → 约7.5h中转 → AY1603 15:55 → 18:25 抵尼斯</b><br>中转可出机场市区 Citywalk（详见「转机」页）；晚住尼斯竞技大酒店。注意：周一萨莱亚只开古董市集。</div>
+        <div class="d"><div class="dt">9/29 · 周二</div><b>尼斯 · 逛街日</b><br>上午萨莱亚市集（鲜花美食）+ 老城，下午 NICETOILE 商场 + 1400㎡ 药妆（L1 电车可达）。</div>
+        <div class="d"><div class="dt">9/30 · 周三</div><b>可再逛市集/NICETOILE → 转战昂蒂布</b><br>上午仍可安排市集 + NICETOILE，随后入住 Best Western Juan-les-Pins（9/30–10/2 共2晚）；10/1 玩昂蒂布、戛纳。</div>
+        <div class="d"><div class="dt">10/2 · 周五</div><b>东线一日游</b><br>昂蒂布 → 埃兹 → 摩纳哥 → 罗克布吕讷（Roquebrune-Cap-Martin）→ 芒通 → 回尼斯。（详见「东线一日」页）</div>
+        <div class="d"><div class="dt">10/3 · 周六</div><b>返程（航班时刻⚠️请核对票面）</b><br>上午 CAP3000 → 午餐 → 16:00 前到机场 → AY1604 约 19:00 起飞 → 抵赫尔辛基 → 浦东。（若票面实为 15:55 档则压缩为半天）</div>
+      </div>
+    </div>
+  </details>
+
+  <!-- 航班核实 -->
+  <div class="section-title">✈️ 航班核实</div>
+  <details class="card" open>
+    <summary><span class="ic">✈️</span><span class="tt">AY1603 去程 / AY1604 回程<span class="meta">⚠️ 公开时刻与既有印象不一致 → 务必核对票面</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="note warn">⚠️ <b>请核对票面！</b>公开时刻与既有印象不一致——之前记的「10/3 15:55 起飞」更可能是去程 AY1603 的时刻。出发前务必打开电子机票 / 航司 App / 代理订单核对实际时刻。</div>
+      <div class="t">✈️ 去程 AY1603（赫尔辛基 → 尼斯 HEL→NCE）</div>
+      <ul>
+        <li>公开时刻：约 <b>15:55 HEL 起飞 → 18:25 NCE 落地</b>（约 3h30m）。</li>
+        <li>与 9/28 上午上海-赫尔辛基（AY88 05:55 落地）衔接，转机约 7.5h；抵达后直接入住尼斯酒店。</li>
+      </ul>
+      <div class="t">✈️ 回程 AY1604（尼斯 → 赫尔辛基 NCE→HEL）</div>
+      <ul>
+        <li>公开时刻：约 <b>19:00 尼斯起飞 → 次日 11:25 抵赫尔辛基</b>（跨日）。</li>
+        <li>这与「10/3 15:55 起飞」的记忆不一致——<b>以票面为准</b>；若回程确为 19:00 档，则 10/3 有将近一整天自由时间（见下方「10/3 回程丝滑安排」）。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">☀️ 10/3 回程丝滑安排</div>
+  <details class="card">
+    <summary><span class="ic">☀️</span><span class="tt">若 19:00 起飞 → 整整一天自由<span class="meta">前提：票面核实为晚间航班</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">上午</div>
+      <ul>
+        <li>睡到自然醒 → <b>CAP3000 购物</b>（11:00 开门）→ 午餐（CAP3000 内 50 家餐厅 / 回市区吃）。</li>
+      </ul>
+      <div class="t">下午（三选一）</div>
+      <ul>
+        <li>① 回尼斯老城再扫一遍：萨莱亚市集（10/3 周六=鲜花美食场）+ Fenocchio 冰激凌；</li>
+        <li>② 把城堡山没拍够的机位补拍（白天光线充足）；</li>
+        <li>③ 视心情直接去机场。</li>
+      </ul>
+      <div class="t">机场与退税</div>
+      <ul>
+        <li>建议起飞前 3h（<b>16:00 前</b>）到 NCE，<b>预留 30-45 分钟退税时间</b>（详见「退税攻略」）。</li>
+      </ul>
+      <div class="note warn">⚠️ <b>若票面实为 15:55 起飞：</b>压缩为半天——上午 CAP3000 速战速决，13:00 前后到机场（国际出发提前 2-3h）。<b>以票面为准。</b></div>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <!-- 通票 -->
+  <div class="section-title">通票 Pass Sud Azur Explore</div>
+  <div class="ticket">
+    <div style="display:flex;align-items:center;gap:5px"><span style="font-size:15px;font-weight:800">ZOU! 体系 · 7天</span></div>
+    <div class="price">€50 <span>/人 · 7天</span></div>
+    <div style="font-size:12.5px;color:var(--sub)">另 +€2 卡费（匿名卡押金，可退）；儿童价（&lt;18岁随行）7天 €40；卡可重复充值使用。</div>
+    <ul>
+      <li><b style="color:#0a7d5a">▸ 覆盖：</b>06省全部 TER 火车 + ZOU! 公交 + 尼斯电车&市内公交 + 各镇公交（昂蒂布 Envibus / 戛纳 Palm Bus / 芒通 ZestBus / 摩纳哥 CAM）。</li>
+      <li><b style="color:#a03834">▸ 不覆盖：</b>TGV 高铁、轮渡、摩纳哥以外区域（如意大利文蒂米利亚）。</li>
+    </ul>
+  </div>
+
+  <details class="card">
+    <summary><span class="ic">🎫</span><span class="tt">官方购票点（已核实·TER SNCF 官方清单）<span class="meta">✅ 已核实到具体网点</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">🛬 尼斯机场（下飞机第一站最方便）</div>
+      <ul>
+        <li><b>Lignes d'Azur 售票机</b>——T1/T2 电车站，24小时；机器收硬币或银行卡，<b>不收现金</b>。</li>
+        <li><b>Grand Arénas 电车站</b>售票机——机场下一站，免费坐过去买。</li>
+      </ul>
+      <div class="t">🚉 Nice-Ville 火车站「Espace ZOU！」（avenue Thiers）</div>
+      <ul><li>周一至六 8:30-12:30 / 13:30-17:00；周日节假日 9:30-15:00。</li></ul>
+      <div class="t">🏙 尼斯市区网点</div>
+      <ul>
+        <li>Agence ZOU! Parc Phoenix（94 bd René Cassin）</li>
+        <li>Agence ZOU! Vauban（16 av des Diables Bleus）</li>
+        <li>Agence ZOU! Thiers（17 av Thiers）</li>
+        <li>Agence Lignes d'Azur（33 bd Dubouchage）</li>
+      </ul>
+      <div class="t">📍 各镇</div>
+      <ul>
+        <li>昂蒂布：Envibus – Pôle d'Echanges（Bd Vautrin，距 SNCF 车站 100 米）</li>
+        <li>戛纳：Gare SNCF Espace ZOU!（4 place de la gare）</li>
+        <li>芒通：Agence ZOU!（21 av de Sospel），周一至五</li>
+        <li>摩纳哥：Agence CAM（22/24 rue du Gabian，Fontvieille 区）</li>
+      </ul>
+      <div class="t">💡 购票提示（实游者经验）</div>
+      <ul>
+        <li>机场 T2 电车站即买：售票机选 7-day → 选生效日 → €2 卡费出卡。</li>
+        <li>尼斯「Agence de Mobilité（ZOU! 出行服务中心）」确为官方网点，可购/充值通票。</li>
+        <li>有游客反映昂蒂布站曾缺货，工作人员会指引去 Nice-Ville 购买——遇到不必慌张。</li>
+        <li>普通单程电车 €1.70；<b>机场要买便宜的就在 Grand Arénas 站买</b>，别买机场专线高价票。</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 实用备忘 -->
+  <div class="section-title">实用备忘</div>
+  <div class="intro-card">
+    <ul style="padding-left:18px;font-size:13px">
+      <li>🌤 <b>天气（9月底）</b>：白天约 21°C、平均 16°C，<b>薄外套叠穿</b>；埃兹山顶风大更冷，加件外套。</li>
+      <li>🚊 尼斯市内单程 €1.70；机场别买「机场专线」高价票，T2 站机直接买。</li>
+      <li>🎫 毕加索博物馆、夏加尔美术馆门票<b>不含在通票内</b>。</li>
+      <li>🗣 语言：法语为主，景点/餐厅英语可沟通。</li>
+      <li>🔌 电源：欧标 C 型插头。</li>
+      <li>🛍 <b>市集场次：</b>萨莱亚市集 <b>周一=古董场、周二~周日=鲜花美食场</b>，出行前看日期别跑空。</li>
+      <li>🛍 <b>CAP3000 距机场约 2 分钟车程</b>，10/3 回程日最后一站购物（TER 通票免费乘坐可达）。</li>
+      <li>💊 <b>药妆折扣：</b>Pharmacie Nice Etoile 大部分产品 50% 折扣；CAP3000 药妆满 €100 可退税。</li>
+      <li>📲 <b>分享到 iPhone：</b>AirDrop / 微信传文件 → Safari 打开 → 添加到主屏幕 → 离线用。</li>
+    </ul>
+  </div>
+
+  <!-- 现金 vs 刷卡 -->
+  <div class="section-title">💶 现金 vs 刷卡</div>
+  <div class="pay-row">
+    <div class="cash"><b>💵 必须 / 建议用现金</b>
+      <ul>
+        <li>昂蒂布 <b>Gelateria del porto</b>（只收现金）</li>
+        <li>尼斯老城 <b>Gelateria Azzurro</b>（只收现金）</li>
+        <li><b>萨莱亚市集 / 各镇市集</b>：鲜花、水果、古董、小摊（普遍只收现金）</li>
+        <li>部分停车咪表 / 自助机</li>
+        <li>小费（不强制、现金顺手）</li>
+      </ul>
+    </div>
+    <div class="card"><b>💳 刷卡没问题（Visa/Mastercard 通用）</b>
+      <ul>
+        <li>所有正规餐厅 / Café / 面包房</li>
+        <li>CAP3000（老佛爷 / 药妆 / Monoprix / 尚美 Auberi）</li>
+        <li>NICETOILE（含 Pharmacie Nice Etoile）</li>
+        <li>火车站 TER（通票免票）、超市</li>
+      </ul>
+    </div>
+  </div>
+  <details class="card">
+    <summary><span class="ic">💡</span><span class="tt">支付提醒 <span class="meta">现金额度建议</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>建议备 50-100€ 现金零钱</b>应付市集、小店、只收现金的冰激凌店。</li>
+        <li>提前在手机钱包 / 卡里备好 Visa/Mastercard；小额零钱可在当地 ATM 或找零获取。</li>
+        <li>机场 <b>Lignes d'Azur 售票机只收硬币或银行卡、不收纸币现金</b>。</li>
+        <li>部分小作坊 POS 仅支持芯片卡；contactless 无感支付最省事。</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 退税 -->
+  <div class="section-title">🧾 退税攻略</div>
+  <details class="card" open>
+    <summary><span class="ic">🧾</span><span class="tt">关键规则 + 你的退税点判定<span class="meta">最后离欧点 = 赫尔辛基 HEL！！</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">关键规则</div>
+      <ul>
+        <li>法国标准税率 20%，结算<b>到手约 12%</b>（扣除退税机构手续费），不是全额 20%。</li>
+        <li>最低消费：<b>同一家店、同一天≥ €100.01</b> 才可开单退税（买单时向店员出示护照）。</li>
+        <li>货物须<b>购买后 3 个月内带出欧盟</b>、保持未使用状态以备查验。</li>
+      </ul>
+      <div class="t">你的行程 → 退税点判定（重点）</div>
+      <ul>
+        <li>回程 NCE → HEL（欧盟内部航班）→ 中国：<b>最后离开欧盟的机场是赫尔辛基 HEL，不是尼斯</b>。</li>
+        <li>按官方规则，从 NCE 飞往另一欧盟国家再回国，退税验证应于<b>最后离欧点（HEL）</b>办理。</li>
+      </ul>
+      <div class="t">方案A（最稳 · 保底）随身行李退税</div>
+      <ul>
+        <li>退税货品放<b>随身行李</b>、单据保留，到 <b>赫尔辛基机场 HEL</b> 的 Global Blue / 海关柜台验证 + 取现。</li>
+        <li>HEL 是国际枢纽，退税柜台通常 24h 营业，航班转机时间宽裕时最从容。</li>
+      </ul>
+      <div class="t">方案B（商品已托运 → 在 NCE 处理）</div>
+      <ul>
+        <li>去 <b>尼斯 Côte d'Azur 机场 T1/T2 到达厅</b>的 <b>PABLO 自助退税机</b>扫描退税单（机器只收银行卡/芯片卡）→ 再到 Global Exchange 柜台取款。</li>
+        <li>适合已将商品塞入托运行李、不愿背着退税品过夜的情况。</li>
+      </ul>
+      <div class="note tip">⏰ 无论哪种方案都<b>预留 30-45 分钟</b>退税时间；10 月初仍属旺季延续，高峰排队更久。</div>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🏢</span><span class="tt">NCE 机场退税点速查 + 芬兰补充</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">NCE 退税点位置速查</div>
+      <ul>
+        <li><b>PABLO 自助机</b>：T1、T2 <b>到达厅 / 安检前</b>，扫描条形码电子验证。</li>
+        <li><b>Global Exchange 柜台</b>：安检后出境区，凭已验证单据领钱（现金 / 退卡 / 支付宝 / 微信视柜台支持）。</li>
+        <li>退税流程在<b>值机前后、过安检前</b>完成，留好行李拿取时间。</li>
+      </ul>
+      <div class="t">芬兰 / 赫尔辛基退税补充</div>
+      <ul>
+        <li>芬兰标准 VAT 25.5%（全欧最高之一）；若在赫尔辛基购物带出欧盟同样可退，Global Blue 单店满 <b>€40</b> 起退。</li>
+        <li>HEL 退税在机场办理（海关手动盖章 + 柜台领取仍是主流）。</li>
+      </ul>
+      <div class="t">操作五部曲</div>
+      <ul>
+        <li>① 购物时出示护照，索要退税单（detaxe / tax-free form），与小票钉在一起。</li>
+        <li>② 确认同一家店单日 ≥ €100.01 才开单；多家店分开开单不合并。</li>
+        <li>③ 打包时退税商品 + 单据放一起（随身行李最稳，便于查验）。</li>
+        <li>④ PABLO 扫条码（或海关盖章）→ 柜台取钱。</li>
+        <li>⑤ 选<b>退现金</b>更稳（当场到手）；退卡周期 1-2 周。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <!-- 出片对照表 -->
+  <div class="section-title">📷 出片点位对照表</div>
+  <details class="card" open>
+    <summary><span class="ic">📷</span><span class="tt">全程最佳机位对照<span class="meta">先地标后细节，日落光线最佳</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <table class="shot"><tr><th>地点</th><th>机位 / 点位</th><th>怎么拍</th></tr>
+        <tr><td>尼斯·城堡山</td><td>机位① <b>Point de vue Colline du château</b></td><td>更高更长焦，<b>向下俯拍果冻海</b>（出大片）；建议先拍此机位</td></tr>
+        <tr><td>尼斯·城堡山</td><td>机位② <b>Bellanda Tower</b></td><td>拍<b>完整海岸线 + 老城同框</b>；沿石阶再向上视角更广，日落光线最佳</td></tr>
+        <tr><td>尼斯·老城</td><td>彩墙街巷 + Fenocchio 冰激凌店前（100+ 口味）</td><td>随手大片</td></tr>
+        <tr><td>尼斯·海滩</td><td>英国人散步大道沿线</td><td>阳光 + 鹅卵石 + 蓝色遮阳伞</td></tr>
+        <tr><td>埃兹</td><td>山顶植物园悬崖全景</td><td>多肉仙人掌 + 地中海全景</td></tr>
+        <tr><td>罗克布吕讷</td><td><b>Château Médiéval de Roquebrune 古堡</b></td><td>中世纪原生小镇 + 古堡海景，人少无商业化</td></tr>
+        <tr><td>摩纳哥</td><td>赌场外立面 + 豪车 / F1 赛道海湾 / 港口游艇</td><td>现场感大片</td></tr>
+        <tr><td>芒通</td><td>黄楼梯 Rue du Bastion / Sablettes 沙滩 / 柠檬色建筑</td><td>明快配色出片</td></tr>
+        <tr><td>昂蒂布</td><td>海边雪山机位（Av. André Sella）/ Cap d'Antibes 环线 / 莫奈同款</td><td>雪山海景同框、悬崖步道</td></tr>
+        <tr><td>戛纳</td><td>梦露壁画 / 影节宫红毯 / 星光大道手印</td><td>打卡合影</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <div class="section-title">本页速览</div>
+  <div class="graph">
+    <div class="ptile"><b>🗂</b>9 大板块</div>
+    <div class="ptile"><b>📷</b>打卡点</div>
+    <div class="ptile"><b>🍽</b>餐厅小吃</div>
+    <div class="ptile"><b>🚉</b>交通衔接</div>
+  </div>
+  <div class="note tip">💡 底部固定按钮切屏：总览 / 转机 / 尼斯 / 昂蒂布 / 东线。每处点位均标注 📷拍照打卡 / 🍽吃饭 / 🚉交通 类型。</div>
+</section>
+
+<!-- ================= 赫尔辛基 ================= -->
+<section class="page" id="page-hel">
+  <div class="section-title first">赫尔辛基转机 · 9/28（约7.5h）</div>
+  <div class="intro-card">落地 05:55 → 约 7.5h 中转 → <b>AY1603 15:55 起飞 → 18:25 抵尼斯</b>。AY88 到达与 AY1603 出发均在 <b>赫尔辛基 HEL T2</b>（✅ 已核实），转机同一航站楼内、<b>无需跨楼摆渡</b>；可出机场到市区 Citywalk，核心区徒步 10 分钟内走完（出市区需出机场返回重新安检，注意返场时间）。</div>
+
+  <div class="section-title">🚉 交通与行李</div>
+  <details class="card">
+    <summary><span class="ic">🚉</span><span class="tt">机场 → 市区 + 寄存<span class="meta">单程 €4.4 · 约30分钟</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>机场火车（Finnair City Bus 或 VR 火车）至 Helsinki Central Station，约 30 分钟、单程 €4.4。</li>
+        <li>行李：Central Station 附近 bag storage 店寄存：<b>24h 约 €17 / 6h 约 €12</b>。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">📷 拍照打卡</div>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">Citywalk 打卡四连<span class="meta">集中步行 10 分钟内</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">① 中央火车站 Helsinki Central Station</div>
+      <p>花岗岩建筑 + 绿穹顶，经典打卡机位。</p>
+      <div class="t">② 白教堂 Tuomiokirkko</div>
+      <p>白色新古典主义穹顶教堂；广场台阶是经典合照位。</p>
+      <div class="t">③ 红教堂 Uspenski Cathedral</div>
+      <p>东正教红砖教堂，山坡上视野好，能拍港口与白教堂同框。</p>
+      <div class="t">④ 老市场厅 Vanha Kauppahalli / 码头市场</div>
+      <p>海边市场，拍色彩小木屋 + 帆船。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🛍</span><span class="tt">Stockmann 百货<span class="meta">购物点，返程顺路</span></span><span class="arrow">▼</span></summary>
+    <div class="body"><p>购物点（LV 等），返程顺路逛。</p></div>
+  </details>
+
+  <div class="section-title">🍽 吃饭 · 重点避坑</div>
+  <div class="note warn">⚠️ <b>避坑：</b>市区海港区三文鱼汤类餐馆普遍<b> 11:00 后才供午餐</b>，早到吃不上。</div>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Plan B（强推）· Nordic Kitchen<span class="meta">机场内 · 落地返程都能吃</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>三文鱼汤 + 驯鹿肉意面，保险不踩雷。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 尼斯 ================= -->
+<section class="page" id="page-nice">
+  <div class="section-title first">尼斯 Nice · 9/28–9/30（住尼斯竞技大酒店 3晚）</div>
+
+  <div class="section-title">📷 拍照打卡</div>
+  <details class="card" open>
+    <summary><span class="ic">📷</span><span class="tt">城堡山 Colline du Château<span class="meta">日落机位天花板 · 免费电梯上山</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>免费电梯上山，俯瞰天使湾 + 红顶老城全景。</li>
+        <li>路线：Bellanda Tower → 人工瀑布 → Panorama Est（日落观景点）。</li>
+        <li>建议 <b>16:00 后上山等日落</b>，或 10:00-11:00 光线最佳。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">英国人散步大道 Promenade des Anglais</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>日出或日落沿湾走，拍海浪 + 遮阳伞 + 蓝色公共座椅。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">天使湾 / 老城海岸线 &amp; Rauba Capeu</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">天使湾 / 老城海岸线</div>
+      <p>经典明信片角度。</p>
+      <div class="t">Rauba Capeu</div>
+      <p>海角机位。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">马塞纳广场 Place Masséna</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>看喷泉 + 电车 + 黑白色调地面。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">老城 Vieux Nice · Cours Saleya</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>Cours Saleya 市集（花市 / 蔬果 / 街巷）。</li>
+        <li>Fenocchio 冰激凌（超多口味）。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🍽 吃饭 · 清单</div>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">La taverna du 9 · 老城餐厅</span><span class="arrow">▼</span></summary>
+    <div class="body"><div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div></div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Cafe de Turin · 生蚝名店</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>海港区，生蚝配白葡萄酒氛围佳。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Ruhl Plage · 海滩餐厅</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>英国人道边海滩餐厅，可点看海位。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">老城小巷传统尼斯菜 + 市集小吃</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>传统尼斯菜：socca 鹰嘴豆饼、pissaladière、salade niçoise。</li>
+        <li>Cours Saleya 市集小吃 + Fenocchio 冰激凌。</li>
+        <li>其余家数按当天行程就近补充，可在老城 / 海港区就近探店。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">新增必吃 · 口味亲测<span class="meta">来自用户的实吃分享 · 价格以到店时价为准</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>Sapori di Sicilia</b>——海鲜饭 + 提拉米苏一绝，量大管饱全是海鲜。</li>
+        <li><b>Gusti</b>（近火车站）——鲜虾意面 €15 / 炸鱿鱼拼盘 €20；味道可以、分量实在，但偏腻。</li>
+        <li><b>Pho Paganini</b>（近火车站）——<b>猪蹄粉 €12 必点</b>，连吃两天的店；火爆建议一开门就去或电话订位；鲜虾 pho 较寡淡、咖啡饮品不推荐。</li>
+        <li><b>Le Mandarin</b>——<b>牛肉 Pho €12.5 最推荐</b>，牛肉丸劲道 + 厚牛肉片多、汤浓郁；点餐即送饮品 + 虾片。</li>
+        <li><b>O Best Chicken</b>（近火车站）——炸鸡类似麦辣鸡翅，套餐 €17 / 单点一桶 14 翅腿 €12；很香但可能肠胃敏感，量力而行。</li>
+        <li><b>Chez Wenjun Restaurant</b>——最好吃的川菜店，人多可提前排位。</li>
+        <li>Fenocchio——100+ 口味冰激凌（老城）。</li>
+      </ul>
+      <div class="note tip">💡 以上为实游者分享，<b>价格与菜单以到店时价为准</b>；老城石板路 + 夏天人多，合理穿插行程。</div>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">尼斯 · 口碑必吃（实测）<span class="meta">小红书实测 · 价格以到店时价为准</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>Gusti Restaurant</b>（🍴 人均 €30）——吃了两次的店；<b>炸鱿鱼、海鲜拼盘+薯条+辣番茄意面、奶油蘑菇意面</b>都推荐，<b>奶油龙虾意面最推</b>；牛肉饼+炖蔬菜不推荐。</li>
+        <li><b>Fenocchio</b>（🍨 gelato €3.8/球）——几十种口味网红店；<b>紫罗兰强推（一入口就眼前一亮）</b>；开心果有糖浆味不推荐、无花果味一般。</li>
+        <li><b>Chez Mireille</b>（🍴 ★★★★★）——小红书超多推；中午去人少可 walk-in，晚上忙到近半夜、桌子摆到路边；<b>海鲜烩饭「饭不夹生」、海鲜新鲜到令人咋舌</b>；烩饭要等，需心理准备。</li>
+        <li><b>Le Café de Turin</b>（🍴 ★★☆☆☆）——百年老店，生蚝/蟹品质顶、肉铺得满且新鲜；<b>但环境一般、服务态度糟（叫点餐叫不来、叫结账叫不应）→ 谨慎选择</b>。</li>
+        <li><b>Torlasco e Torlasco il vino</b>（🍴 ★★★★★）——老板人非常好；海鲜极鲜（烤鱼上桌前掰开腮给你看）；<b>推荐生蚝、鱼、炸小鱼（空口下酒、挤柠檬解腻）</b>；啤酒汽水都是 local，用水是阿尔卑斯水，别地儿喝不到。</li>
+        <li><b>Le terre del sud</b>（🍴 ★★★★★ MVP）——「5 天 2 刷」的全场最佳（原帖尼斯海鲜 Top 排序）；<b>龙虾（半只但个头不小）、蟹（比龙虾还火、去晚就没了）、海鲜意面</b>；搭配辣椒橄榄油加倍美味 + Soave 白葡萄酒 + 橙味舒芙蕾（不吃甜品的人也炫完一个）。</li>
+      </ul>
+      <div class="note tip">💡 店大多在老城区附近；人均与菜单以到店时价为准。</div>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🛍 逛街购物</div>
+  <details class="card" open>
+    <summary><span class="ic">🛍</span><span class="tt">萨莱亚市集 Cours Saleya<span class="meta">场次日历：周一古董 / 周二~周日鲜花美食</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="note tip">📅 <b>场次日历：</b>周一只开古董市集，周二~周日为鲜花美食市集。<b>9/29、9/30、10/3 均为鲜花美食日</b>，出发前看日期别跑空。</div>
+      <div class="t">8 条贴士</div>
+      <ul>
+        <li>① <b>分清场次</b>：周一只开古董市集，周二~周日鲜花美食市集（9/29、9/30、10/3 都是鲜花美食日）。</li>
+        <li>② <b>鞋</b>：老城全是凹凸石板路，优先软底平底鞋，大热天走路费体力。</li>
+        <li>③ <b>防晒</b>：敏感肌全副防晒——防晒乳 + 遮阳帽 + 防晒面罩，多备替换口罩（出汗浸湿闷）。</li>
+        <li>④ <b>温度</b>：正午气温高手机易发烫、拍照糊片、耗电快——游玩优选上午或傍晚。</li>
+        <li>⑤ <b>水</b>：街边饮品溢价高，自带矿泉水更省钱。</li>
+        <li>⑥ <b>财物</b>：市集人流杂乱，手机、包包贴身放置。</li>
+        <li>⑦ <b>古董</b>：款式繁杂易选择困难，提前想好买什么，别在烈日下纠结。</li>
+        <li>⑧ <b>砍价</b>：逛古董摊位可礼貌还价，不必按标价尽数支付。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><span class="ic">🛍</span><span class="tt">NICETOILE 商场 + 1400㎡ 药妆<span class="meta">L1 电车可达 · 大部分 50% 折扣</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>位置：</b>市中心 Jean Médecin 大道（24/30 avenue Jean Médecin，06000 Nice）。</li>
+        <li><b>交通：</b>L1 电车 Jean Médecin 沿线可达；商场共两层，<b>地下一层最大</b>。</li>
+        <li><b>药妆 Pharmacie Nice Etoile：</b>全尼斯最大药房，1400㎡、30000+ 品类、17 个收银台、50 名顾问；工作日 9:00-20:00、周六 9:00-20:00、<b>周日休息</b>。</li>
+        <li><b>折扣：</b>大部分产品 <b>50% 折扣</b>——Jonzac、Weleda、Luxéol、Olaplex、Granions、Forcapil、Arkopharma、Caudalie、Biolane 等品牌都有。</li>
+        <li><b>位置参考：</b>商场内阿迪达斯对面（阿迪也在打折）。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><span class="ic">🛍</span><span class="tt">CAP3000 购物中心<span class="meta">10/3 回程主战场 · 距机场约2分钟</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>位置：</b>Avenue Eugène Donadeï，06700 Saint-Laurent-du-Var，距机场约 2 分钟车程。</li>
+        <li><b>交通：</b>① 机场打车 5 分钟内；② TER 火车到 <b>Saint-Laurent-du-Var 站</b>（通票免费乘坐）下车步行可达；A8 高速 49 出口。</li>
+        <li><b>营业：</b>商场 周一至六 10:00-20:30，周日及节假日 11:00-19:00；Monoprix 9:00-20:30。周六正常营业（11:00 起）。</li>
+        <li><b>规模：</b>300+ 家店铺、50 家餐厅（含 15 家海景餐厅）、退税 12%。</li>
+      </ul>
+      <div class="t">必逛四连</div>
+      <ul>
+        <li><b>老佛爷百货 Galeries Lafayette</b>——比市中心老佛爷还大、货更全；法国本土鞋牌 Jonak Paris 值得看；服饰区 20-40% 折扣；满 €250 有小礼品。</li>
+        <li><b>药妆店</b>——满 €100 退税；防晒类打折非常划算、买二有折；Roger&amp;Gallet 护手霜好闻；希腊药妆也推荐（注意托运额）。</li>
+        <li><b>Monoprix 超市</b>——门口熟食店、精致糕点、各种酱、生鲜区。</li>
+        <li><b>机场伴手礼店</b>——最后一刻没买伴手礼，机场内部店兜底。</li>
+      </ul>
+      <div class="t">Le Corso 高端区（45 家奢侈/设计师店）</div>
+      <ul>
+        <li><b>尚美巴黎 Chaumet 官方零售商 Auberi 就在这里</b>（Joséphine / Bee My Love / Liens 系列齐全）——想逛尚美直接来这，比找尼斯市区独立店（查无独立精品店）靠谱；不作单独行程，跟 CAP3000 一起逛即可。</li>
+      </ul>
+      <div class="note warn">⏰ 10/3 AY1604 约 <b>19:00</b> 起飞（⚠️ 请核对票面），上午购物后 <b>16:00 前</b>到机场、留足退税时间；若票面实为 15:55 档则压缩为半天。</div>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">景点分级（攻略者参考）</div>
+  <div class="intro-card">
+    <ul style="padding-left:18px;font-size:13px">
+      <li><b>顶级：</b>英国人散步大道、天使湾。</li>
+      <li><b>夯：</b>城堡山、老城。</li>
+      <li><b>人上人：</b>Rauba Capeu、马塞纳广场、夏加尔美术馆（Musée Marc Chagall，门票不含通票）。</li>
+      <li><b>其余：</b>西米耶（Cimiez）等。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 昂蒂布·戛纳 ================= -->
+<section class="page" id="page-antibes">
+  <div class="section-title first">昂蒂布 Antibes · 9/30–10/2（住 Best Western Juan-les-Pins）</div>
+
+  <div class="section-title">📷 拍照打卡 · 昂蒂布</div>
+  <details class="card" open>
+    <summary><span class="ic">📷</span><span class="tt">海边雪山机位<span class="meta">雪山+海景同框 · 必拍</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>Av. André Sella 附近停车场 / 公交 2 路 Fontaine 站下车步行 10 分钟。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">Cap d'Antibes 海岸徒步环线</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>全程约 3 小时，半程（到某观景点）约 1 小时。</li>
+        <li>悬崖步道 + 松林，沿途多处拍照点。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">莫奈画作同款机位</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>昂蒂布海域 + 城堡的经典构图（莫奈在昂蒂布画过多幅）。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🎨</span><span class="tt">毕加索博物馆 Musée Picasso<span class="meta">门票不含通票</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>海角古堡内，画作 + 海景庭院。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🍽 吃饭 · 昂蒂布</div>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">昂蒂布 · 口碑必吃（实测）<span class="meta">小红书实测 · 价格以到店时价为准</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="t">☕ 咖啡厅</div>
+      <ul>
+        <li><b>Petit Monsieur</b>（☕ 独立精品咖啡）——推荐手冲、两种豆可选，黑咖啡会问喜欢的豆子风格；店做 cookie/面包，精酿啤酒可外带海边喝；店主是加拿大搬来的夫妇、男主健谈；室外小巷超惬意，带电脑书有 Wi-Fi。地址：25 Rue de Fersen, 06600 Antibes。</li>
+        <li><b>Good Mate Coffee</b>（☕ 外带首选）——老城中心普罗旺斯市场边，位置方便，拿铁边走边喝。地址：3 Rue Georges Clemenceau, 06600 Antibes。</li>
+      </ul>
+      <div class="t">🍴 餐厅</div>
+      <ul>
+        <li><b>Restaurant Nananère</b>（🍴 米其林推荐 人均 €30-60）——南法当地菜，厨房全用 Mauviel 锅具、细节到位；<b>午市套餐 Menu €29（主菜+甜点+咖啡）</b>，推荐海鱼（分子酱汁配新鲜鱼）。地址：13 Rue Championnet。</li>
+        <li><b>Ferni</b>（🍴 意大利菜 人均 €30-60）——氛围好、晚上适合喝一杯；<b>推荐烤章鱼、Risotto</b>；室外吹晚风可看整个广场；就在 Nananère 旁边。地址：Place des Martyrs de la Résistance。</li>
+        <li><b>Café Milo</b>（🍴 意大利菜 人均 €20-30）——<b>每日例鱼、白葡萄酒炖青口一绝</b>，很适合中国人口味的意大利菜；位置在老城喷泉广场边，旁边有很火的 crêpes 店可顺路买。地址：24 Rue Georges Clemenceau。</li>
+      </ul>
+      <div class="note tip">💡 人均与菜单以到店时价为准。</div>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Gelateria del porto · 港口冰激凌<span class="meta">⚠️ 只收现金</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>港口冰激凌店，<b>只收现金</b>，记得带现金。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">昂蒂布老城 / 港口海鲜</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>老城、港口海鲜餐厅就近选择。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <!-- 玩法升级 · Antibes 一日环游 -->
+  <div class="section-title">🧭 玩法升级 · Antibes 一日环游（J人版 · 淡季）</div>
+  <div class="intro-card">以<b>火车站为起点</b>的一日环游：不赶不必早起 → 午餐前景点 1–3 → 老城午餐 → 两段海岸徒步 → 日落观景台 → 晚餐。全程步行约四万步，很能走可尝试；多点位对应编号见下方速查。</div>
+  <details class="card" open>
+    <summary><span class="ic">🗺</span><span class="tt">环游总览<span class="meta">火车站起点 · 午餐前景点 1–3</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>以<b>火车站为起点</b>；出发前在超市买好<b>水与零食</b>。</li>
+        <li>午餐前游览<b>景点 1–3</b>（Fort Carré 远眺 / 雕塑 / 沙滩）→ 老城解决午餐（蓝=高分餐厅）与甜品（红=热门甜品店）。</li>
+        <li>等营业开门时段可去书店 <b>Antibes Books</b>。</li>
+        <li>交通组合：<b>02 路公交 / 打车 / 沿 4–6 海岸线徒步</b> 到徒步线路起点 6。</li>
+        <li>务必盯餐厅/甜品店<b>营业时间</b> + 公交<b>起末班与发车间隔</b>。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🏰</span><span class="tt">Fort Carré<span class="meta">点位 1 · 星形堡垒远眺</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>昂蒂布星形海防堡垒，与其它点不同方向，可远眺海港；建议单独安排或顺路取景。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🥾</span><span class="tt">两段海岸徒步<span class="meta">6–7 第一段 · 7–9 第二段</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>两段徒步都不长且好走，<b>一步一景，推荐走全程</b>：<b>6–7</b> 第一段、<b>7–9</b> 第二段。</li>
+        <li>8 附近可下水游泳；9–10 海岸线不开放，走主路不远。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🌅</span><span class="tt">日落观景台 10<span class="meta">从 9 走主路约 20 分钟</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p><b>日落时分强烈推荐步行去观景台 10</b>（从观景台 9 沿主路步行约 20 分钟）；傍晚夕照海面是全程高光。</p>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Pizza Noli<span class="meta">晚餐组合 · 从观景台 10 出发</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>环游晚餐三选一：① 从观景台 10 <b>打车去 Pizza Noli</b>；② TER / 打车回火车站；③ 从观景台 10 坐 <b>02 路公交</b>回老城吃晚餐，再步行到火车站。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📚</span><span class="tt">Antibes Books<span class="meta">等开门 / 午后消磨</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>老城独立书店，等餐厅/甜品店开门时可来消磨，也适合带回南法伴手礼。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🔢</span><span class="tt">10 点位速查（编号对应）</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <table class="shot"><tr><th>编号</th><th>点位</th><th>说明</th></tr>
+        <tr><td>1</td><td>Fort Carré</td><td>星形堡垒，远眺为主，与其它点不同方向</td></tr>
+        <tr><td>2</td><td>海边雕塑</td><td>沿途顺路打卡</td></tr>
+        <tr><td>3</td><td>沙滩</td><td>午餐前可玩</td></tr>
+        <tr><td>4</td><td>沙滩（较破）</td><td>顺路看即可</td></tr>
+        <tr><td>5</td><td>海边风景点</td><td>沿 4–6 徒步近 1h；不值可打车 / 公交</td></tr>
+        <tr><td>6–9</td><td>两段海岸徒步</td><td>6–7 第一段、7–9 第二段；8 可下水游泳</td></tr>
+        <tr><td>10</td><td>观景台</td><td>日落必去，从 9 走主路约 20 分钟</td></tr>
+      </table>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">☁️</span><span class="tt">淡季经验与心态<span class="meta">全程步行约四万步</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>全程步行约四万步，很能走可尝试；带老人小孩可分段打车 / 公交。</li>
+        <li>多云也出片（彩虹 / 晚霞），天气不好不必焦虑。</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="section-title">🚉 去戛纳</div>
+  <div class="note tip">🚉 昂蒂布 → 戛纳 火车约 10 分钟，随到随走，不需整天。</div>
+
+  <div class="section-title">📷 拍照打卡 · 戛纳（10分钟可达）</div>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">梦露壁画</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>Cannes 城区墙面大壁画，打卡热门。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">旧港 Vieux Port / 影节宫 Palais des Festivals</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>红毯台阶、星光大道手印。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">彩绘墙 / 涂鸦街区</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>随手拍。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🍽 吃饭 · 戛纳</div>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Le palais des pains · 面包房<span class="meta">烘焙必吃 · 随便点都好吃</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>戛纳烘焙店（Artisan Boulanger），<b>面包 / 甜点随便点都好吃</b>，逛完影节宫顺手带走当点心。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 东线一日 ================= -->
+<section class="page" id="page-east">
+  <div class="section-title first">东线一日游 · 10/2</div>
+  <div class="intro-card">顺序已锁定：<b>昂蒂布 → 埃兹 → 摩纳哥 → 罗克布吕讷（Roquebrune-Cap-Martin）→ 芒通 → 回尼斯</b>。用 7 天通票坐 ZOU! / TER；摩纳哥看完 11:55 王宫换岗再出发，一路顺流到芒通看日落。</div>
+
+  <!-- 埃兹 -->
+  <div class="section-title">📍 埃兹 Èze · 山顶中世纪小镇</div>
+  <details class="card" open>
+    <summary><span class="ic">🚉</span><span class="tt">交通·怎么去<span class="meta">火车直达约40分钟 · 每30分钟一班</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>昂蒂布 → 埃兹 <b>火车直达约 40 分钟、每 30 分钟一班</b>（时间紧可 82 路公交）。</li>
+        <li>埃兹站（Eze sur Mer）<b>在山上山下的海边</b>，需转 <b>83 路公交</b>或<b>打车</b>上山。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">山顶植物园 Jardin Exotique d'Èze<span class="meta">09:00–18:30 全年无休 · 门票 €8</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>悬崖花园 + 多肉/仙人掌 + 地中海全景，<b>全城最佳机位</b>；<b>09:00–18:30 全年无休</b>。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">Fragonard 香水工厂 + 中世纪石街巷</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>Fragonard 香水工厂：可逛可买。</li>
+        <li>中世纪石街巷：随手大片。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <div class="note warn">⚠️ <b>埃兹山顶风大更冷</b>，记得加件外套。</div>
+
+  <!-- 玩法升级 · Èze 休闲玩法 -->
+  <div class="section-title">🧭 玩法升级 · Èze 埃兹（山城）休闲玩法</div>
+  <div class="intro-card">环抱地中海的悬崖山城，<b>人间值得</b>。最佳到访：<b>一大早或日落前</b>（日光柔和、游客少）。</div>
+  <details class="card" open>
+    <summary><span class="ic">🚌</span><span class="tt">Èze 怎么去 · 三种交通任选<span class="meta">赶时间 / 不想脱妆推荐方式 1</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>① 尼斯老城 Uber</b>：约 30 分钟内、车费 20 几欧——赶时间 / 想保持妆面首推。</li>
+        <li><b>② 82 路公交直达</b>：尼斯 Vauban 车站乘 82 路直达埃兹山顶，下车后导「Jardin Exotique d'Èze」步行约 5 分钟。</li>
+        <li><b>③ 火车 + 徒步</b>：尼斯 Ville 站火车 14 分钟到埃兹山脚（<b>不推荐</b>，除非想徒步一小时爬山；但推荐徒步下山看风景）。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+
+  <!-- 摩纳哥 -->
+  <div class="section-title">📍 摩纳哥 Monaco · Monte-Carlo</div>
+  <div class="note tip">🚉 埃兹 → 摩纳哥，坐至 <b>Monaco Monte-Carlo 站</b>。</div>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">蒙特卡洛赌场 Casino de Monte-Carlo</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>进不去也能拍外立面 + 豪车。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">王宫换岗仪式 · 11:55</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>Palais Princier 换岗仪式 <b>11:55</b> 掐点看；广场 + 海景机位。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🎁</span><span class="tt">游客中心 · 免费福利别错过</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>免费金币巧克力 + 盖章留念。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">港口游艇 + F1 赛道</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>港口游艇 + F1 赛道沿湾。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">就餐建议</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>摩纳哥消费高，建议把主要正餐安排在埃兹 / 芒通；港口咖啡简餐可。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <!-- 罗克布吕讷 -->
+  <div class="section-title">📍 Roquebrune-Cap-Martin · 罗克布吕讷</div>
+  <details class="card" open>
+    <summary><span class="ic">🚉</span><span class="tt">交通 · 二选一<span class="meta">沿海线 TER 仅 1-2 站 · 摩纳哥→芒通途中顺路</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>省钱版（火车+爬山）：</b>火车到 <b>Roquebrune-Cap-Martin 站</b> → 出站右侧石阶山路上山，约<b>爬 30 分钟</b>到小镇中心 / 城堡（普通石头山路，沿导航走）。</li>
+        <li><b>省力版（Uber 直达）：</b>直接打 Uber 到 <b>Château Médiéval de Roquebrune</b>，下车即小镇中心，适合同行有老人小孩。</li>
+      </ul>
+      <div class="icon-tags"><span class="pt bus">🚉 交通</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🎯</span><span class="tt">Château Médiéval 古堡 · 超强出片<span class="meta">中世纪原生小镇 · 人少无商业化</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>中世纪原生小镇，<b>古堡是海景大片机位</b>；人极少、无商业化，好逛好拍。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <div class="note tip">🚉 <b>建议顺序：</b>摩纳哥（11:55 王宫换岗后）→ 火车 2 站到 Roquebrune（顺路打卡城堡）→ 芒通（细逛 + 看日落）→ TER 回尼斯。「芒通坐前进方向右侧靠海」同理适用于罗克布吕讷—芒通路段。</div>
+
+  <!-- 芒通 -->
+  <div class="section-title">📍 芒通 Menton · 柠檬之城</div>
+  <div class="note tip">🚉 埃兹 → 芒通 火车约 <b>30 分钟</b>，<b>坐前进方向右侧</b>靠海看风景。</div>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">圣米歇尔黄楼梯 Rue du Bastion</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>经典柠檬黄拍照机位（老城）。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">Sablettes 海滩</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>欧洲最好的细沙滩之一，赤脚踩沙。</p>
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📷</span><span class="tt">柠檬广场 / Jardins Biovès 柠檬橙花园</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="icon-tags"><span class="pt ph">📷 拍照打卡</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">柠檬特饮</span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p><b>柠檬汁 / 柠檬特饮必喝</b>；老城或海滩边餐厅。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">JEAN LUC PELE · 柠檬挞<span class="meta">烘焙店 · 随便点都好吃</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>Artisan Boulanger-Pâtissier-Snacking，<b>柠檬挞超好吃</b>；另推荐海边一家烘焙店的 pain au chocolat（惊艳）。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">芒通 · 口碑必吃（实测）<span class="meta">小红书实测 · 价格以到店时价为准</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>31 Menton</b>（🍴 人均 €40）——小红书相关帖少，walk-in 没搜到但意外好吃；<b>海鲜拼盘 + 海鲜意面（虾最新鲜，几天来吃到最新鲜的虾）</b>；坐室外看海、吹晚风，配紫罗兰/接骨木鸡尾酒；「离南法前的最后一顿，十分满意」。地址：Google 地图搜店名。</li>
+        <li><b>Cocotte Café</b>（🍴 人均 €30）——全天营业（当地餐馆多 14:30 后歇业，这家例外，小红书推荐多）；<b>烤鸡（皮酥脆香）+ 奶油海鲜烩饭</b>，量大管饱、经济实惠；小黑板手写菜单、店面小、老奶奶店员服务好；橙+柠檬鲜榨果汁偏酸（能吃酸者慎点）。地址：Google 地图搜店名。</li>
+        <li><b>TUTTI FRUTTI</b>（🍨 gelato €3/球）——<b>薰衣草 &amp; 百香果强烈推荐</b>（花味很南法，百香果带一点芒果感、清爽），朋友点的咖啡味；南法不少 gelato 水果味像果泥，这家不是那种质感。地址：Google 地图搜店名。</li>
+      </ul>
+      <div class="note tip">💡 店子集中在海边 &amp; 黄楼梯一带；人均与菜单以到店时价为准。</div>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <!-- 玩法升级 · Menton 新玩法（Garavan 起点） -->
+  <div class="section-title">🧭 玩法升级 · Menton 新玩法（Garavan 起点）</div>
+  <div class="intro-card">以 <b>Menton Garavan 火车站</b>为起点，两条主路（沿岸海景路 + 纪念品「主街」）步行均不超 20 分钟，全程步行 2–3 小时；不必早起，可上午或下午出发。注意公园与餐厅营业时间。</div>
+  <details class="card" open>
+    <summary><span class="ic">🗺</span><span class="tt">Garavan 路线点位<span class="meta">下午 15:00 到 · 17:30 逛完吃冰淇淋</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>起点 <b>Menton Garavan 火车站</b> → 港口 → 植物园（面积不大、环境不错，花谢时趣味打折）。</li>
+        <li>3 雕塑/观景点 → 4 沙滩（顺路）→ 5 观景点。</li>
+        <li>6 <b>网红黄台阶</b>（黄楼梯，入口与打卡点）→ 7 教堂（可入内，外立面正面照一般）。</li>
+        <li>8 色彩鲜明的小巷 → 9 <b>高处观景台</b>（步行几分钟即到，<b>一定要去</b>）。</li>
+        <li>吃：<b>Tutti Frutti</b> 冰淇淋（好吃但偏贵，纪念品街上，见上方必吃卡）；<b>La Trattoria</b> 龙虾意面（离 Menton 火车站近）。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🥾</span><span class="tt">进阶徒步：Menton → Roquebrune<span class="meta">环角约 1.5h · 路况好</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>走不动可乘 <b>TER 从 Menton 撤退</b>；若沿<b>十一至十七号点位环角徒步</b>（约 <b>1.5h</b>，路况比 Antibes 还好走）可到相邻 <b>Roquebrune-Cap-Martin</b>。</li>
+        <li>中途 <b>10 号公园</b>可歇脚；或 TER 到 <b>Carnolès</b>。</li>
+        <li>隐藏成就：十七号附近车站坐 TER 离开，或<b>继续越过法-摩边境</b>——从国境线走到摩纳哥火车站还要约半小时。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">La Trattoria<span class="meta">龙虾意面 · 近芒通主站</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>龙虾意面出名，离 Menton 主火车站较近，逛完 Garavan 顺路来吃。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+
+  <!-- 玩法升级 · 芒通 + 摩纳哥 一日游 -->
+  <div class="section-title">🧭 玩法升级 · 芒通 + 摩纳哥 一日游（尼斯当天来回）</div>
+  <div class="intro-card">推荐次序：<b>上午芒通 → 下午摩纳哥</b>（不然背光）；摩纳哥物价高，<b>午饭在芒通解决</b>。芒通 NCE 火车站出发，车程约 <b>39 分钟</b>。</div>
+  <details class="card" open>
+    <summary><span class="ic">🍋</span><span class="tt">上午 · 芒通段<span class="meta">两个火车站 · 可走主站 / Garavan</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>芒通有两个火车站：可<b>往返都走主站</b>，或去程 Garavan、回程主站。</li>
+        <li>点位：<b>Escaliers 黄色大阶梯</b>、圣米歇尔教堂、Chapelle des Pénitents-Blancs、Point de vue du Port、<b>Le nom de Menton（字母牌）</b>、Plage des Sablettes、Menton viewpoint（拍彩色房子）、Statue Saint Michel。</li>
+        <li>吃：<b>Restaurant Primo</b>；购物：<b>Rue Saint-Michel</b> 买纪念品。</li>
+        <li>💡 芒通纪念品可爱，<b>冰箱贴约 10€4 个</b>，南法纪念品建议在此买。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🍽</span><span class="tt">Restaurant Primo<span class="meta">芒通午餐 · 摩纳哥物价高早饭在此</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>芒通午餐选择（摩纳哥物价高，午饭在芒通解决）；吃完再动身去摩纳哥。</p>
+      <div class="icon-tags"><span class="pt eat">🍽 吃饭</span></div>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">🎰</span><span class="tt">下午 · 摩纳哥段<span class="meta">火车站很大 · 好几层每层有出口</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li>芒通 → 摩纳哥：火车站很大，好几层、<b>每层都有出口</b>。</li>
+        <li>点位：Monaco Tourism Office 游客中心、Princess Grace Japanese Garden（可不去）、<b>Casino de Monte-Carlo</b>、Jardins Saint-Martin 圣马丁花园、Cathédrale de Monaco 大教堂、Point de vue Port de Fontvieille 观景台、Prince's Palace of Monaco 王子宫殿、Harbour viewpoint、Circuit de Monaco（F1 赛道）。</li>
+        <li>路线小技巧：看完赌场<b>直接坐公交去海洋博物馆</b>再往火车站走——后面基本是<b>下坡路</b>。</li>
+        <li>时间不够，看完 Casino 就可以回去。</li>
+      </ul>
+    </div>
+  </details>
+  <details class="card">
+    <summary><span class="ic">📶</span><span class="tt">摩纳哥流量提醒<span class="meta">⚠️ 不能用欧盟流量</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <ul>
+        <li><b>摩纳哥不能用欧盟流量</b>：出发前在 Google 地图<b>下载离线地图</b>，沿途蹭 WiFi。</li>
+        <li>摩纳哥道路上下台阶多偏绕（有地图也不太好走），留足步行时间。</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="note tip">🚉 <b>返程：</b>芒通 → 尼斯 火车回程（或当日行程结束直接回尼斯）。</div>
+</section>
+
+<!-- ================= 工具箱 · 火车时刻 ================= -->
+<section class="page" id="page-transit">
+
+  <div class="pg-hero">🚉 <b>沿海火车小抄</b>　TER 随到随走，全程可刷 ZOU! 通票/日票；出发前连网查一次实时，离线时看下方速查。手机号座：上车选座即可，无需订座费。</div>
+
+  <div class="section-title">🔎 查实时时刻 · 三个通道</div>
+
+  <details class="card" open>
+    <summary><span class="ic">📱</span><span class="tt">SNCF Connect<span class="meta">全国火车/巴士 · 官网+App</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="ch-grid">
+        <div class="ch"><span class="quo">🌐</span><div><b>官网 sncf-connect.com</b><span>查全法列车时刻、TGV / TER / Intercités，可购通票之外的票</span></div></div>
+        <div class="ch"><span class="quo">📲</span><div><b>手机 App</b><span>App Store / 应用商店搜「SNCF Connect」，支持中英法语界面、存电子票</span></div></div>
+      </div>
+      <div class="note tip">💡 站内检索建议直接用英/法站名，如 <b>Nice → Menton</b>，比「尼斯→芒通」更准。</div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="ic">🚌</span><span class="tt">Allez ZOU!<span class="meta">官方 App · 实时 + 购票 + 通票</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="ch-grid">
+        <div class="ch"><span class="quo">🟩</span><div><b>App Store 搜「Allez ZOU!」</b><span>Provence-Alpes-Côte d'Azur 官方出行 App，TER 实时时刻 + 晚点预警一屏看全</span></div></div>
+        <div class="ch"><span class="quo">🎫</span><div><b>可出票</b><span>售 TER 单程/日票，也能展示 ZOU! 通票二维码给列车员扫码</span></div></div>
+      </div>
+      <div class="note tip">💡 尼斯-昂蒂布-戛纳-芒通整条沿海线都是 ZOU! 运营区，<b>通票 Pass Sud Azur 直接可坐</b>，免每次买票。</div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="ic">🖥</span><span class="tt">ter.sncf.com<span class="meta">南法 TER 官方时刻表网页</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="ch-grid">
+        <div class="ch"><span class="quo">🕘</span><div><b>官网 ter.sncf.com/provence-alpes-cote-d-azur</b><span>按区间查当天往返时刻表，可切换出发/到达时刻，标注换乘站与晚点</span></div></div>
+        <div class="ch"><span class="quo">📄</span><div><b>可存 PDF 时刻表</b><span>出发前一晚截屏/存下要坐的班次，离线也心里有数</span></div></div>
+      </div>
+    </div>
+  </details>
+
+  <div class="section-title">🕒 沿海 TER 常用站速查 <span style="font-size:11px;color:var(--sub)">参考车程 · 以实时为准</span></div>
+
+  <details class="card" open>
+    <summary><span class="ic">🚉</span><span class="tt">尼斯 ↔ 沿海各站<span class="meta">参考车程（直达车辆）</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="stn"><b>尼斯 Nice-Ville → 昂蒂布 Antibes</b><em>约 15 分</em></div>
+      <div class="stn"><b>尼斯 Nice-Ville → 戛纳 Cannes</b><em>约 25–35 分</em></div>
+      <div class="stn"><b>尼斯 Nice-Ville → 埃兹 Eze-sur-Mer</b><em>约 10 分</em></div>
+      <div class="stn"><b>尼斯 Nice-Ville → 摩纳哥 Monaco-Monte-Carlo</b><em>约 20–25 分</em></div>
+      <div class="stn"><b>尼斯 Nice-Ville → 芒通 Menton</b><em>约 35 分</em></div>
+      <div class="stn"><b>昂蒂布 Antibes → 戛纳 Cannes</b><em>约 10 分</em></div>
+      <div class="stn"><b>昂蒂布 Antibes → 埃兹/摩纳哥</b><em>约 15–30 分</em></div>
+      <div class="stn"><b>摩纳哥 Monaco → 芒通 Menton</b><em>约 10–15 分</em></div>
+      <div class="note tip">⚠️ <b>埃兹站（Eze-sur-Mer）在山脚</b>，出站后需换乘 82/83 路公交往返山顶村，核对好衔接时间。</div>
+    </div>
+  </details>
+
+  <div class="note tip" style="margin-bottom:14px">🛡 <b>坐车三招：</b>① 班次约 <b>15–30 分钟一班</b>（早晚高峰更密）；② 提前 <b>10 分钟</b>到站台看电子牌；③ 站台在屏幕最上方写「Voie 2」等（Voie=站台）。</div>
+
+</section>
+
+<!-- ================= 工具箱 · 离线法语 ================= -->
+<section class="page" id="page-phrase">
+
+  <div class="pg-hero">🇫🇷 <b>离线法语话术</b>　按场景组织的实用短句：问路、火车时刻、点餐、酒店前台、紧急。每句三栏：中文 → 法语 → 中文近似发音；话术不够用时用顶部在线翻译兜底。</div>
+
+  <div class="section-title">🌐 在线翻译</div>
+  <details class="card" open>
+    <summary><span class="ic">🌐</span><span class="tt">快速翻译 · Google/DeepL 直达<span class="meta">需联网 · 点按钮跳转</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <p>基础话术不够用时，用在线翻译兜底：<b>需联网</b>，点按钮自动唤起浏览器 / 翻译 App。</p>
+      <div class="tr-wrap">
+        <input id="tr-inp" type="text" placeholder="输入法语/中文，自动翻译" enterkeyhint="go">
+        <button class="tr-btn" id="tr-go" type="button">翻译</button>
+      </div>
+      <div class="tr-cols">
+        <a class="gt" id="tr-gt" href="https://translate.google.com/">Google 翻译</a>
+        <a class="dl" id="tr-dl" href="https://www.deepl.com/translator">DeepL 翻译</a>
+      </div>
+      <div class="tr-hint">提示：iPhone 自带「翻译」App 也支持<b>离线词包</b>；Safari <b>长按网页文字</b>可整页翻译。输入框「翻译」按钮按<b>法语→中文</b>打开 Google 翻译。</div>
+    </div>
+  </details>
+
+  <div class="section-title">🧭 问路</div>
+  <details class="card" open>
+    <summary><span class="ic">🧭</span><span class="tt">怎么走 · 方向 · 迷路<span class="meta">先问路再动身</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="phrase-row"><span class="zh">你好，请问去……怎么走？</span><span class="fr">Bonjour, comment aller à … ?</span><span class="py">波日，共忙 阿累 阿…</span></div>
+      <div class="phrase-row"><span class="zh">直走</span><span class="fr">Tout droit</span><span class="py">图 德瓦</span></div>
+      <div class="phrase-row"><span class="zh">左转</span><span class="fr">À gauche</span><span class="py">阿 高什</span></div>
+      <div class="phrase-row"><span class="zh">右转</span><span class="fr">À droite</span><span class="py">阿 德瓦特</span></div>
+      <div class="phrase-row"><span class="zh">远吗？</span><span class="fr">C'est loin ?</span><span class="py">塞 卢万</span></div>
+      <div class="phrase-row"><span class="zh">近吗？</span><span class="fr">C'est proche ?</span><span class="py">塞 普罗什</span></div>
+      <div class="phrase-row"><span class="zh">要坐车吗？</span><span class="fr">Faut-il prendre le bus ?</span><span class="py">福蒂勒 普航德喝 乐 布斯</span></div>
+      <div class="phrase-row"><span class="zh">公交站在哪？</span><span class="fr">Où est l'arrêt de bus ?</span><span class="py">乌埃 拉累 德 布斯</span></div>
+      <div class="phrase-row"><span class="zh">你能在地图上指给我吗？</span><span class="fr">Pouvez-vous me montrer sur la carte ?</span><span class="py">普维乌 么 蒙特雷 叙喝 拉 卡特</span></div>
+      <div class="phrase-row"><span class="zh">我迷路了。</span><span class="fr">Je suis perdu</span><span class="py">曰 随 佩喝丢</span></div>
+      <div class="phrase-row"><span class="zh">哪个方向？</span><span class="fr">Dans quelle direction ?</span><span class="py">当 凯勒 迪喝克西永</span></div>
+      <div class="phrase-row"><span class="zh">走路去要多久？</span><span class="fr">C'est combien de temps à pied ?</span><span class="py">塞 共比安 得 当 阿 皮埃</span></div>
+      <div class="phrase-row"><span class="zh">卫生间在哪？</span><span class="fr">Où sont les toilettes ?</span><span class="py">乌 松 累 托瓦莱特</span></div>
+      <div class="phrase-row"><span class="zh">能帮我写下来吗？</span><span class="fr">Vous pouvez l'écrire ?</span><span class="py">乌 普维 莱克里喝</span></div>
+      <div class="phrase-row"><span class="zh">这附近有地铁吗？</span><span class="fr">Il y a un métro près d'ici ?</span><span class="py">伊里亚 安 梅特罗 普莱 迪西</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🚉 火车时刻（重点）</div>
+  <details class="card" open>
+    <summary><span class="ic">🚉</span><span class="tt">几点开 · 站台 · 买票<span class="meta">南法看车走全靠铁路</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="phrase-row"><span class="zh">去尼斯/戛纳的火车几点开？</span><span class="fr">À quelle heure part le train pour Nice/Cannes ?</span><span class="py">阿 凯勒喝 帕喝 乐 特航 普喝 尼斯/嘎纳</span></div>
+      <div class="phrase-row"><span class="zh">下一班车几点？</span><span class="fr">C'est à quelle heure le prochain train ?</span><span class="py">塞 阿 凯勒喝 乐 普罗商 特航</span></div>
+      <div class="phrase-row"><span class="zh">从几号站台上车？</span><span class="fr">De quel quai part le train ?</span><span class="py">得 凯勒 凯 帕喝 乐 特航</span></div>
+      <div class="phrase-row"><span class="zh">一张去戛纳的单程票。</span><span class="fr">Un aller simple pour Cannes, s'il vous plaît</span><span class="py">安 阿累 桑普勒 普喝 嘎纳，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">往返票。</span><span class="fr">Un aller-retour</span><span class="py">安 阿累-略图喝</span></div>
+      <div class="phrase-row"><span class="zh">这张票可以用吗？</span><span class="fr">Ce ticket est-il valable ?</span><span class="py">塞 提凯 埃提勒 瓦拉布勒</span></div>
+      <div class="phrase-row"><span class="zh">火车晚点了。</span><span class="fr">Le train a du retard</span><span class="py">乐 特航 阿 迪 略塔喝</span></div>
+      <div class="phrase-row"><span class="zh">我坐的是这个站台吗？</span><span class="fr">Je suis au bon quai ?</span><span class="py">曰 随 欧 邦 凯</span></div>
+      <div class="phrase-row"><span class="zh">中途要换乘吗？</span><span class="fr">Je dois changer ?</span><span class="py">曰 杜瓦 尚日埃</span></div>
+      <div class="phrase-row"><span class="zh">我在哪个站下车？</span><span class="fr">À quelle station je descends ?</span><span class="py">阿 凯勒 斯塔西永 曰 德桑</span></div>
+      <div class="phrase-row"><span class="zh">几点能到？</span><span class="fr">À quelle heure est-ce qu'on arrive ?</span><span class="py">阿 凯勒喝 埃斯科 孔 阿丽乌</span></div>
+      <div class="phrase-row"><span class="zh">末班车几点？</span><span class="fr">À quelle heure est le dernier train ?</span><span class="py">阿 凯勒喝 埃 乐 得喝涅 特航</span></div>
+      <div class="phrase-row"><span class="zh">还有票/座位吗？</span><span class="fr">Il reste des places ?</span><span class="py">伊勒 雷斯特 德 普拉斯</span></div>
+      <div class="phrase-row"><span class="zh">车票在哪买？</span><span class="fr">Où acheter un billet ?</span><span class="py">乌 阿什泰 安 比耶</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🍽 点餐</div>
+  <details class="card" open>
+    <summary><span class="ic">🍽</span><span class="tt">点菜 · 忌口 · 买单<span class="meta">餐厅应急三件套</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="phrase-row"><span class="zh">我想要……</span><span class="fr">Je voudrais …</span><span class="py">曰 乌德莱…</span></div>
+      <div class="phrase-row"><span class="zh">有菜单吗？</span><span class="fr">Vous avez la carte ?</span><span class="py">乌 扎维 拉 卡特</span></div>
+      <div class="phrase-row"><span class="zh">招牌菜是什么？</span><span class="fr">Quel est votre spécialité ?</span><span class="py">凯勒 埃 沃特 斯佩西阿里特</span></div>
+      <div class="phrase-row"><span class="zh">有素的吗？</span><span class="fr">Est-ce qu'il y a un plat végétarien ?</span><span class="py">埃斯基里 阿 安 普拉 卫杰塔里安</span></div>
+      <div class="phrase-row"><span class="zh">我海鲜过敏。</span><span class="fr">Je suis allergique aux fruits de mer</span><span class="py">曰 随 阿莱尔吉克 欧 弗瑞 德 梅喝</span></div>
+      <div class="phrase-row"><span class="zh">一杯红酒。</span><span class="fr">Un verre de vin rouge, s'il vous plaît</span><span class="py">安 维喝 得 万 如日</span></div>
+      <div class="phrase-row"><span class="zh">一杯水。</span><span class="fr">Une eau, s'il vous plaît</span><span class="py">于恩 欧</span></div>
+      <div class="phrase-row"><span class="zh">可以刷卡吗？</span><span class="fr">Vous acceptez la carte bancaire ?</span><span class="py">乌 扎克塞普泰 拉 卡特 帮凯喝</span></div>
+      <div class="phrase-row"><span class="zh">买单，谢谢。</span><span class="fr">L'addition, s'il vous plaît</span><span class="py">拉迪西永，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">非常好吃！</span><span class="fr">C'était délicieux !</span><span class="py">塞泰 德里西厄</span></div>
+      <div class="phrase-row"><span class="zh">不要香菜。</span><span class="fr">Sans coriandre, s'il vous plaît</span><span class="py">桑 高里昂德，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">可以加辣一点吗？</span><span class="fr">Plus épicé, s'il vous plaît</span><span class="py">普鲁 艾皮塞，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">加柠檬好吗？</span><span class="fr">Avec du citron, s'il vous plaît</span><span class="py">阿维克 迪 西特龙，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">少放一点盐。</span><span class="fr">Moins de sel, s'il vous plaît</span><span class="py">姆安 得 塞勒，西乌 不赖</span></div>
+      <div class="phrase-row"><span class="zh">少放油。</span><span class="fr">Moins d'huile</span><span class="py">姆安 杜伊勒</span></div>
+      <div class="phrase-row"><span class="zh">不要冰。</span><span class="fr">Sans glace</span><span class="py">桑 格拉斯</span></div>
+      <div class="phrase-row"><span class="zh">有英文菜单吗？</span><span class="fr">Vous avez le menu en anglais ?</span><span class="py">乌 扎维 乐 梅纽 安 昂格莱</span></div>
+      <div class="phrase-row"><span class="zh">我不吃洋葱/大蒜。</span><span class="fr">Sans oignon / ail, s'il vous plaît</span><span class="py">桑 奥尼永 / 阿伊尤</span></div>
+      <div class="phrase-row"><span class="zh">这个太辣了。</span><span class="fr">C'est trop épicé</span><span class="py">塞 特罗 艾皮塞</span></div>
+      <div class="phrase-row"><span class="zh">能帮我打包吗？</span><span class="fr">À emporter, s'il vous plaît</span><span class="py">阿 昂波喝泰，西乌 不赖</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🏨 酒店前台（重点）</div>
+  <details class="card" open>
+    <summary><span class="ic">🏨</span><span class="tt">入住 · 退房 · 要 WiFi<span class="meta">安顿好了才玩得踏实</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="phrase-row"><span class="zh">你好，我来办理入住。</span><span class="fr">Bonjour, je voudrais m'enregistrer</span><span class="py">波日，曰 乌德莱 芒日几斯特雷</span></div>
+      <div class="phrase-row"><span class="zh">我订了房，名字是……</span><span class="fr">J'ai une réservation au nom de …</span><span class="py">日埃 于恩 瑞泽瓦西永 欧 农 得…</span></div>
+      <div class="phrase-row"><span class="zh">几点退房？</span><span class="fr">À quelle heure est la sortie ?</span><span class="py">阿 凯勒喝 埃 拉 索提</span></div>
+      <div class="phrase-row"><span class="zh">可以帮我寄存行李吗？</span><span class="fr">Pouvez-vous garder mes bagages ?</span><span class="py">普维乌 嘎喝德 梅 巴嘎日</span></div>
+      <div class="phrase-row"><span class="zh">早餐几点？</span><span class="fr">À quelle heure est le petit-déjeuner ?</span><span class="py">阿 凯勒喝 埃 乐 普提-代日讷</span></div>
+      <div class="phrase-row"><span class="zh">有 WiFi 吗？密码是什么？</span><span class="fr">Vous avez le Wi-Fi ? Le mot de passe ?</span><span class="py">乌 扎维 乐 歪-费 ？ 乐 莫 得 巴斯</span></div>
+      <div class="phrase-row"><span class="zh">空调/暖气坏了。</span><span class="fr">La climatisation / le chauffage ne marche pas</span><span class="py">拉 克利马提扎西永 / 乐 刷法日 呢 玛喝什 帕</span></div>
+      <div class="phrase-row"><span class="zh">能帮我叫辆出租车吗？</span><span class="fr">Pouvez-vous appeler un taxi ?</span><span class="py">普维乌 阿普勒 安 塔克西</span></div>
+      <div class="phrase-row"><span class="zh">钥匙/房卡在这里。</span><span class="fr">La clé / la carte de chambre</span><span class="py">拉 克莱 / 拉 卡特 得 尚布喝</span></div>
+      <div class="phrase-row"><span class="zh">有免费牙刷吗？</span><span class="fr">Vous avez une brosse à dents gratuite ?</span><span class="py">乌 扎维 于恩 布霍斯 阿 当 格拉图伊特</span></div>
+      <div class="phrase-row"><span class="zh">有拖鞋吗？</span><span class="fr">Vous avez des chaussons ?</span><span class="py">乌 扎维 德 学送</span></div>
+      <div class="phrase-row"><span class="zh">有茶包吗？</span><span class="fr">Vous avez des sachets de thé ?</span><span class="py">乌 扎维 德 萨谢 得 泰</span></div>
+      <div class="phrase-row"><span class="zh">有免费的瓶装水吗？</span><span class="fr">Vous avez de l'eau gratuite ?</span><span class="py">乌 扎维 得 洛 格拉图伊特</span></div>
+      <div class="phrase-row"><span class="zh">有吹风机吗？</span><span class="fr">Vous avez un sèche-cheveux ?</span><span class="py">乌 扎维 安 塞什-舍乌</span></div>
+      <div class="phrase-row"><span class="zh">能加一张床吗？</span><span class="fr">Vous pouvez ajouter un lit ?</span><span class="py">乌 普维 阿如泰 安 利</span></div>
+      <div class="phrase-row"><span class="zh">可以晚一点退房吗？</span><span class="fr">Je peux prolonger ma sortie ?</span><span class="py">曰 普 普罗龙日埃 玛 索提</span></div>
+      <div class="phrase-row"><span class="zh">前台 24 小时有人吗？</span><span class="fr">La réception est ouverte 24h/24 ?</span><span class="py">拉 瑞塞普西永 埃 图维喝特 万特卡特喝</span></div>
+    </div>
+  </details>
+
+  <div class="section-title">🆘 紧急</div>
+  <details class="card" open>
+    <summary><span class="ic">🆘</span><span class="tt">求救 · 丢护照 · 找医院<span class="meta">希望用不到</span></span><span class="arrow">▼</span></summary>
+    <div class="body">
+      <div class="phrase-row"><span class="zh">救命！</span><span class="fr">Aidez-moi !</span><span class="py">埃代 莫瓦</span></div>
+      <div class="phrase-row"><span class="zh">叫警察。</span><span class="fr">Appelez la police</span><span class="py">阿普勒 拉 波利斯</span></div>
+      <div class="phrase-row"><span class="zh">我需要医生。</span><span class="fr">J'ai besoin d'un médecin</span><span class="py">日埃 伯赞 安 梅德桑</span></div>
+      <div class="phrase-row"><span class="zh">医院在哪？</span><span class="fr">Où est l'hôpital ?</span><span class="py">乌埃 洛皮塔勒</span></div>
+      <div class="phrase-row"><span class="zh">我丢了护照。</span><span class="fr">J'ai perdu mon passeport</span><span class="py">日埃 佩喝丢 蒙 帕斯波喝</span></div>
+      <div class="note tip">🆘 欧洲急救电话：<b>112</b>（通用）· 法国报警 <b>17</b> · 火警 <b>18</b> · 救护 <b>15</b>。</div>
+    </div>
+  </details>
+
+</section>
+
+</main>
+
+<!-- ================= 底部导航 ================= -->
+<footer class="tabbar">
+  <div class="in">
+    <button class="active" data-tab="page-home"><span class="i">🗂</span><span class="t">总览</span></button>
+    <button data-tab="page-hel"><span class="i">🛫</span><span class="t">转机</span></button>
+    <button data-tab="page-nice"><span class="i">🏖</span><span class="t">尼斯</span></button>
+    <button data-tab="page-antibes"><span class="i">🏰</span><span class="t">昂蒂布</span></button>
+    <button data-tab="page-east"><span class="i">🏔</span><span class="t">东线</span></button>
+    <button data-tab="page-transit"><span class="i">🚉</span><span class="t">时刻</span></button>
+    <button data-tab="page-phrase"><span class="i">🇫🇷</span><span class="t">法语</span></button>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages=['page-home','page-hel','page-nice','page-antibes','page-east','page-transit','page-phrase'];
+  var tl=document.getElementById('timeline');
+  function show(name){
+    function go(btn){
+      pages.forEach(function(p){
+        var el=document.getElementById(p);
+        if(p===name){el.classList.add('active')}else{el.classList.remove('active')}
+      });
+      var tlBtns=tl.querySelectorAll('[data-tab]');
+      for(var i=0;i<tlBtns.length;i++){
+        if(tlBtns[i].getAttribute('data-tab')===name){tlBtns[i].classList.add('active')}
+        else{tlBtns[i].classList.remove('active')}
+      }
+      var ftBtns=document.querySelectorAll('footer.tabbar button');
+      for(var j=0;j<ftBtns.length;j++){
+        if(ftBtns[j].getAttribute('data-tab')===name){ftBtns[j].classList.add('active')}
+        else{ftBtns[j].classList.remove('active')}
+      }
+      window.scrollTo(0,0);
+    }
+    go(go);
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('[data-tab]'):null;
+    if(b){show(b.getAttribute('data-tab'));}
+  });
+  /* ---- 一键导航：按点位卡自动生成 Google/Apple 深链跳转，保留离线零外链 ---- */
+  function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
+  function addNav(host,nm,small){
+    if(!host||!nm||nm.length<2||host.querySelector('.navbtns'))return;
+    var g='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(nm);
+    var a='https://maps.apple.com/?daddr='+encodeURIComponent(nm);
+    var box=document.createElement('div');box.className='navbtns'+(small?' small':'');
+    if(small){
+      box.innerHTML='<a class="nb g" href="'+g+'">🗺 导航到'+escHtml(nm)+'</a><a class="nb a" href="'+a+'">🧭 Apple</a>';
+    }else{
+      box.innerHTML='<span class="nb-l">📍 '+escHtml(nm)+'</span><a class="nb g" href="'+g+'">🗺 Google 导航</a><a class="nb a" href="'+a+'">🧭 Apple 地图</a>';
+    }
+    host.appendChild(box);
+  }
+  function navButtons(){
+    var ignore=['购票','支付','退税','航班','起飞','寄存','怎么去','行程时间线','五部曲','场次日历','贴士','提示','建议','对照','现金','刷卡','通票','核实','须知','避雷'];
+    var blockIms=['⚠','ℹ','🗓','✈','💳','🧾','💶','🧨','🎫','💡','🚉','📦','☀','📱','🖥','🚌'];
+    var listMode=['必吃','尼斯菜','就餐','小吃','名店'];
+    var cards=document.querySelectorAll('details.card');
+    for(var i=0;i<cards.length;i++){
+      var c=cards[i],tt=c.querySelector('summary .tt');
+      if(!tt||!c.querySelector('.icon-tags'))continue;
+      var im=c.querySelector('.ic')?c.querySelector('.ic').textContent:'';
+      var black=0;
+      for(var bi=0;bi<blockIms.length;bi++){if(im.indexOf(blockIms[bi])>-1){black=1;break}}
+      if(black)continue;
+      var tClone=tt.cloneNode(true);
+      var metas=tClone.querySelectorAll('.meta');
+      for(var mi=0;mi<metas.length;mi++){metas[mi].parentNode.removeChild(metas[mi])}
+      var full=tClone.textContent.replace(/\s+/g,' ').trim();
+      var skip=false;
+      for(var j=0;j<ignore.length;j++){if(full.indexOf(ignore[j])>-1){skip=true;break}}
+      if(skip)continue;
+      var body=c.querySelector('.body');if(!body)continue;
+      /* 餐饮/购物合集卡：逐条店名注入小按钮（仅当 ≥2 条店名规则匹配） */
+      var isList=false;
+      for(var L=0;L<listMode.length;L++){if(full.indexOf(listMode[L])>-1){isList=true;break}}
+      if(isList&&body.querySelector('li')){
+        var rows=[];
+        var lisq=body.querySelectorAll('li');
+        for(var k=0;k<lisq.length;k++){
+          var m=(lisq[k].innerHTML||'').match(/^\s*<b>([^<>]{2,36})<\/b>\s*(?:（[^）]{1,24}）)?\s*[—-]/u);
+          var nm=m?m[1].trim():'';
+          if(nm&&nm.length>=2&&nm.length<=40){rows.push({el:lisq[k],nm:nm})}
+        }
+        if(rows.length>=2){
+          for(var r=0;r<rows.length;r++){addNav(rows[r].el,rows[r].nm,true)}
+          for(var k2=0;k2<lisq.length;k2++){
+            if(lisq[k2].querySelector('.navbtns'))continue;
+            var lat=(lisq[k2].textContent.trim().split(/[\s，。、—–\-:：]/)[0]||'').trim();
+            if(/^[A-Za-z\u00C0-\u017F' .-]{3,30}$/.test(lat)){addNav(lisq[k2],lat,true)}
+          }
+          continue;
+        }
+      }
+      /* “打卡四连”类：打卡点分散在 .t 小标题行，逐条注入 */
+      if(full.indexOf('打卡')>-1&&body.querySelector('.t')){
+        var tlines=body.querySelectorAll('.t');
+        var cnt=0;
+        for(var ti=0;ti<tlines.length;ti++){
+          var tx=tlines[ti].textContent.replace(/^[①-⑳\d]\s*/,'').trim();
+          if(tx&&tx.length>=2&&tx.length<=40){addNav(tlines[ti],tx,true);cnt++}
+        }
+        if(cnt)continue;
+      }
+      /* 常规单点卡：整卡一个导航 */
+      addNav(body,full);
+    }
+  }
+  /* ---- 统一接管外链跳转：用 location.assign 顶替 _blank / window.open，
+         兼容 file:// 与系统 WebView，即使单点 JS 出错也不阻断跳转 ---- */
+  document.addEventListener('click',function(ev){
+    var t=ev.target;
+    if(!t||!t.closest)return;
+    var a=t.closest('a.nb,a.gt,a.dl,a[href^="http"],a[href^="https"]');
+    if(!a)return;
+    var u=a.getAttribute('href')||'';
+    if(!/^https?:\/\//i.test(u))return;
+    ev.preventDefault();
+    window.location.assign(u);
+  });
+  /* ---- 法语 tab · 在线翻译：URL 仅存脚本内，点按钮跳转 ---- */
+  try{
+    var trInp=document.getElementById('tr-inp'),trGo=document.getElementById('tr-go');
+    var trDo=function(){var v=(trInp.value||'').trim();if(!v)return;window.location.assign('https://translate.google.com/?sl=fr&tl=zh-CN&text='+encodeURIComponent(v));};
+    if(trGo){trGo.onclick=trDo;}
+    if(trInp){trInp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();trDo();}});}
+  }catch(e1){}
+  try{navButtons();}catch(e2){}
+  try{show('page-home');}catch(e3){}
+})();
+</script>
+</body>
+</html>
