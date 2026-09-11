@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#5c4033">
+<meta name="theme-color" content="#1a6b8a">
 <title>南法旅行攻略 · 9/27-10/3</title>
 <style>/* ===== Natural Organic Design System ===== */
 :root{
@@ -22,7 +22,9 @@ body{
   -webkit-font-smoothing:antialiased;padding-bottom:72px;
 }
 h1{font-size:26px;font-weight:700;letter-spacing:-.3px;line-height:1.2;font-family:Georgia,"Times New Roman","Noto Serif SC",serif}
-h2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--no-sage);margin:28px 0 10px;font-family:-apple-system,sans-serif}
+h2{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--no-sage);margin:28px 0 10px;font-family:-apple-system,sans-serif;position:relative}
+h2::before{content:'~ ';color:var(--no-tan);opacity:.6}
+h2::after{content:' ~';color:var(--no-tan);opacity:.6}
 h3{font-size:17px;font-weight:600;line-height:1.3;font-family:Georgia,"Times New Roman","Noto Serif SC",serif}
 
 /* ---- Action Links ---- */
@@ -45,14 +47,23 @@ a.act.outline:active{background:var(--no-stone);color:var(--no-cream)}
 
 /* ---- Header ---- */
 header.hero{
-  background:var(--no-sage);color:var(--no-cream);padding:32px 20px 26px;
+  background:linear-gradient(170deg,#1a6b8a 0%,#2b8cb0 25%,#4da8c9 50%,#6dbcd6 80%,#f0d89c 100%);
+  color:#fff;padding:32px 20px 26px;
   position:relative;overflow:hidden;
 }
-header.hero .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:3px;color:rgba(250,246,241,0.8);margin-bottom:6px;font-family:-apple-system,sans-serif;font-weight:600}
-header.hero h1{color:var(--no-cream);font-size:30px}
-header.hero .sub{font-size:13px;color:rgba(250,246,241,0.8);margin-top:4px;line-height:1.5}
+header.hero .hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 40% at 85% 15%,rgba(255,248,220,0.35) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 50% at 15% 85%,rgba(26,107,138,0.2) 0%,transparent 60%),
+    radial-gradient(circle at 75% 60%,rgba(255,255,255,0.06) 0%,transparent 50%),
+    radial-gradient(circle at 5% 10%,rgba(255,255,255,0.12) 0%,transparent 30%);
+}
+header.hero .eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,0.75);margin-bottom:6px;font-family:-apple-system,sans-serif;font-weight:600;position:relative;z-index:1}
+header.hero h1{color:#fff;font-size:30px;text-shadow:0 1px 3px rgba(0,0,0,.15)}
+header.hero .sub{font-size:13px;color:rgba(255,255,255,0.8);margin-top:4px;line-height:1.5;position:relative;z-index:1}
 header.hero .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-header.hero .tags span{background:rgba(250,246,241,0.15);color:var(--no-cream);font-size:10px;font-weight:600;padding:4px 12px;border-radius:9999px;font-family:-apple-system,sans-serif}
+header.hero .tags span{background:rgba(255,255,255,0.18);color:#fff;font-size:10px;font-weight:600;padding:4px 12px;border-radius:9999px;font-family:-apple-system,sans-serif;position:relative;z-index:1}
 
 /* ---- Sticky Day Nav ---- */
 nav.tl{position:sticky;top:0;z-index:50;background:var(--no-stone);overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
@@ -73,6 +84,14 @@ main{max-width:640px;margin:0 auto;padding:16px 16px 12px}
   margin:14px 0;border-radius:1.5rem;overflow:hidden;
   box-shadow:0 1px 3px rgba(92,64,51,0.04);
   transition:box-shadow .5s ease;
+  position:relative;
+}
+.card::after{
+  content:'';position:absolute;top:8px;right:8px;
+  width:24px;height:24px;
+  background:radial-gradient(circle at 70% 30%,var(--no-sage) 1px,transparent 2px),
+             radial-gradient(circle at 30% 70%,var(--no-tan) 1px,transparent 2px);
+  opacity:.15;pointer-events:none;
 }
 .card:hover{box-shadow:0 2px 8px rgba(92,64,51,0.08)}
 .card-summary{display:flex;align-items:flex-start;gap:10px;padding:16px 18px;cursor:pointer;user-select:none;position:relative}
@@ -120,7 +139,7 @@ main{max-width:640px;margin:0 auto;padding:16px 16px 12px}
 .phrase-row .py{font-size:11px;color:var(--no-sage)}
 
 /* ---- Footer ---- */
-footer.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--no-stone);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -1px 4px rgba(92,64,51,0.1)}
+footer.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:linear-gradient(180deg,#5c4033 0%,#4a3328 100%);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -1px 4px rgba(92,64,51,0.1)}
 footer.tabbar .in{max-width:640px;margin:0 auto;display:flex}
 footer.tabbar button{flex:1;border:none;background:transparent;padding:8px 1px 6px;cursor:pointer;font-family:-apple-system,sans-serif;color:rgba(250,246,241,0.6);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;transition:all .3s ease}
 footer.tabbar button .i{font-size:16px;line-height:1.2}
@@ -161,11 +180,12 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
 <body>
 
 <header class="hero">
+  <div class="hero-bg"></div>
   <div class="eyebrow">South of France · Autumn 2026</div>
-  <h1>南法旅行攻略</h1>
+  <h1>🌊 南法旅行攻略</h1>
   <div class="sub">9/27 → 10/3 · 上海 ⇄ 赫尔辛基 ⇄ 尼斯 · 昂蒂布 · 东线五站</div>
   <div class="tags">
-    <span>离线可用</span><span>7天通票 €50</span><span>2人·背包</span>
+    <span>🧳 离线可用</span><span>🎫 7天通票 €50</span><span>🎒 2人·背包</span>
   </div>
 </header>
 
@@ -279,14 +299,34 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
   <div class="card-summary"><span class="ic">🌤</span><span class="tt"><h3>实时天气追踪</h3><span class="meta">9月底南法约 16-21°C · 点击查看各城市实时天气</span></span><span class="arrow">▼</span></div>
   <div class="card-body">
     <div class="act-group">
-      <a class="act sage" href="https://weather.com/weather/today/l/FRXX0059:1:FR" target="_blank">🌤 尼斯 Nice</a>
-      <a class="act sage" href="https://weather.com/weather/today/l/FRXX0016:1:FR" target="_blank">🌤 昂蒂布 Antibes</a>
-      <a class="act sage" href="https://weather.com/weather/today/l/FRXX0024:1:FR" target="_blank">🌤 戛纳 Cannes</a>
-      <a class="act sage" href="https://weather.com/weather/today/l/MNXX0001:1:MN" target="_blank">🌤 摩纳哥 Monaco</a>
-      <a class="act sage" href="https://weather.com/weather/today/l/FRXX0065:1:FR" target="_blank">🌤 芒通 Menton</a>
-      <a class="act outline" href="https://weather.com/weather/today/l/FIXX0002:1:FI" target="_blank">🌤 赫尔辛基 Helsinki</a>
+      <a class="act sage" href="https://www.google.com/search?q=weather+nice+france" target="_blank">🌤 尼斯 Nice</a>
+      <a class="act sage" href="https://www.google.com/search?q=weather+antibes+france" target="_blank">🌤 昂蒂布 Antibes</a>
+      <a class="act sage" href="https://www.google.com/search?q=weather+cannes+france" target="_blank">🌤 戛纳 Cannes</a>
+      <a class="act sage" href="https://www.google.com/search?q=weather+monaco" target="_blank">🌤 摩纳哥 Monaco</a>
+      <a class="act sage" href="https://www.google.com/search?q=weather+menton+france" target="_blank">🌤 芒通 Menton</a>
+      <a class="act outline" href="https://www.google.com/search?q=weather+helsinki+finland" target="_blank">🌤 赫尔辛基 Helsinki</a>
     </div>
     <p style="font-size:11px;color:var(--no-stone-light);margin-top:4px">9月底白天约 21°C、夜间约 16°C，薄外套叠穿。埃兹山顶风大更冷，加件外套。地中海气候，阵雨可能。</p>
+  </div>
+</div>
+
+<div class="card open">
+  <div class="card-summary"><span class="ic">📸</span><span class="tt"><h3>拍照姿势参考</h3><span class="meta">南法情侣拍照姿势灵感 · 小红书精选</span></span><span class="arrow">▼</span></div>
+  <div class="card-body">
+    <div class="act-group">
+      <a class="act sage" href="https://www.xiaohongshu.com/search_result_ai?keyword=南法情侣拍照姿势&source=web_explore_feed" target="_blank">📸 南法情侣拍照姿势</a>
+      <a class="act outline" href="https://www.xiaohongshu.com/search_result_ai?keyword=南法拍照机位&source=web_explore_feed" target="_blank">📷 南法拍照机位</a>
+      <a class="act outline" href="https://www.xiaohongshu.com/search_result_ai?keyword=南法旅行穿搭&source=web_explore_feed" target="_blank">👗 南法穿搭灵感</a>
+    </div>
+    <div class="subhead">📷 每个点位推荐姿势</div>
+    <p><b>城堡山俯拍：</b>背对镜头面向果冻海，手臂自然张开或扶栏杆。从高处往下拍，人小景大。</p>
+    <p><b>Bellanda Tower：</b>侧身靠在石墙上，眼神看远方海岸线。日落逆光拍剪影极美。</p>
+    <p><b>埃兹山顶植物园：</b>站在仙人掌/多肉中间，低角度仰拍把人框在植物和天空之间。坐在石墙上双腿自然垂下。</p>
+    <p><b>摩纳哥赌场前：</b>站在豪车旁边假装路过（不要碰车）。赌场台阶上坐姿或站姿，广角拍建筑全貌。</p>
+    <p><b>芒通黄楼梯：</b>从下往上走，回头看一眼镜头。坐在黄色台阶上，柠檬色+蓝天对比强烈。</p>
+    <p><b>昂蒂布海岸：</b>海边悬崖步道上，人往前走、镜头跟拍（动态感）。日落观景台背对夕阳拍剪影。</p>
+    <p><b>戛纳红毯台阶：</b>模仿明星走红毯，回头挥手。梦露壁画前模仿经典捂裙姿势。</p>
+    <p style="font-size:11px;color:var(--no-stone-light);margin-top:8px">💡 拍照口诀：侧脸看远方 + 不看镜头更自然 + 逆光拍剪影 + 低角度显腿长 + 利用拱门/花丛做天然画框</p>
   </div>
 </div>
 <div class="note" style="font-size:12px">
@@ -393,7 +433,7 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
   <div class="card-body">
     <div class="timeline-item"><span class="time">13:00</span><span class="detail"><b>昂蒂布老城</b><span>石板小巷，普罗旺斯市场。Petit Monsieur 精品咖啡（⭐⭐⭐⭐⭐ 手冲+精酿啤酒，25 Rue de Fersen）。</span><a class="act" href="https://maps.google.com/?q=Petit+Monsieur%2C+Antibes" target="_blank">🗺 导航</a></span></div>
     <div class="timeline-item"><span class="time">14:30</span><span class="detail"><b>海边雪山机位</b><span>Av. André Sella 附近，公交 2 路 Fontaine 站步行 10 分钟。雪山+海景同框。</span><a class="act" href="https://maps.google.com/?q=Avenue+André+Sella%2C+Antibes" target="_blank">🗺 导航</a></span></div>
-    <div class="timeline-item"><span class="time">15:30</span><span class="detail"><b>港口 + 毕加索博物馆</b><span>海角古堡内，画作+海景庭院。门票约 €8-12，不含通票。现场买或提前官网订。</span><a class="act" href="https://maps.google.com/?q=Musée+Picasso%2C+Antibes" target="_blank">🗺 导航</a><a class="act" href="https://www.antibes-juanlespins.com/fr/musees/musee-picasso" target="_blank">🎟 官网购票</a></span></div>
+    <div class="timeline-item"><span class="time">15:30</span><span class="detail"><b>港口 + 毕加索博物馆</b><span>海角古堡内，画作+海景庭院。门票约 €8-12，不含通票。⚠️ 淡季下午 14:00 才开门（午休 12:00-14:00），9/30 周三开门。</span><a class="act" href="https://maps.google.com/?q=Musée+Picasso%2C+Antibes" target="_blank">🗺 导航</a><a class="act" href="https://www.antibes-juanlespins.com/fr/musees/musee-picasso" target="_blank">🎟 官网</a></span></div>
     <div class="timeline-item"><span class="time">17:00</span><span class="detail"><b>Gelateria del porto</b><span>港口冰激凌，⚠️ 只收现金。莫奈画作同款机位。</span><a class="act" href="https://maps.google.com/?q=Gelateria+del+Porto%2C+Antibes" target="_blank">🗺 导航</a></span></div>
   </div>
 </div>
@@ -445,7 +485,7 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
   <div class="card-body">
     <div class="timeline-item"><span class="time">07:30</span><span class="detail"><b>退房出发</b><span>Antibes → Eze-sur-Mer，TER 约 40 分钟，刷通票。⚠️ 埃兹站在山脚海边。</span><a class="act" href="https://apps.apple.com/fr/app/sncf-connect/id1038700214" target="_blank">📲 查实时时刻</a></span></div>
     <div class="timeline-item"><span class="time">08:15</span><span class="detail"><b>83 路公交上山</b><span>或打车。下车导「Jardin Exotique d'Èze」步行 5 分钟。</span><a class="act" href="https://maps.google.com/?q=Jardin+Exotique+d+Èze" target="_blank">🗺 导航</a></span></div>
-    <div class="timeline-item"><span class="time">08:45</span><span class="detail"><b>山顶植物园</b><span>悬崖花园+多肉/仙人掌+地中海全景。09:00 开门，€8/人，现场买票。⚠️ 山顶风大加外套。</span><a class="act" href="https://www.jardinexotiqueeze.fr/en" target="_blank">🎟 官网</a></span></div>
+    <div class="timeline-item"><span class="time">08:45</span><span class="detail"><b>山顶植物园</b><span>悬崖花园+多肉/仙人掌+地中海全景。09:00 开门（全年），€8/人，现场买票。⚠️ 山顶风大加外套。出发前确认 10 月无调整：+33 4 93 41 10 30</span><a class="act" href="https://www.jardinexotiqueeze.fr/en" target="_blank">🎟 官网</a></span></div>
     <div class="timeline-item"><span class="time">09:30</span><span class="detail"><b>中世纪石街巷 + Fragonard 香水工厂</b><span>免费参观，可逛可买。</span><a class="act" href="https://maps.google.com/?q=Fragonard%2C+Èze" target="_blank">🗺 导航</a></span></div>
   </div>
 </div>
@@ -454,7 +494,7 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
   <div class="card-summary"><span class="ic">🎰</span><span class="tt"><h3>第 2 站 · 摩纳哥 Monaco</h3><span class="meta">10:30–13:00 · 11:55 王宫换岗</span></span><span class="arrow">▼</span></div>
   <div class="card-body">
     <div class="timeline-item"><span class="time">10:00</span><span class="detail"><b>Eze → Monaco Monte-Carlo</b><span>TER 约 10 分钟。⚠️ 摩纳哥不能用欧盟流量，开移动一日流量。提前下好离线地图。</span><a class="act" href="https://maps.google.com/?q=Gare+de+Monaco+Monte-Carlo" target="_blank">🗺 导航</a></span></div>
-    <div class="timeline-item"><span class="time">10:30</span><span class="detail"><b>蒙特卡洛赌场</b><span>外立面+豪车。</span><a class="act" href="https://maps.google.com/?q=Casino+de+Monte-Carlo" target="_blank">🗺 导航</a></span></div>
+    <div class="timeline-item"><span class="time">10:30</span><span class="detail"><b>蒙特卡洛赌场</b><span>外立面+豪车。内部 14:00 才开放（€18 入场含 €10 筹码），上午只能拍外观。不可短裤拖鞋。</span><a class="act" href="https://maps.google.com/?q=Casino+de+Monte-Carlo" target="_blank">🗺 导航</a></span></div>
     <div class="timeline-item"><span class="time">11:00</span><span class="detail"><b>游客中心</b><span>免费金币巧克力+盖章留念。</span></span></div>
     <div class="timeline-item"><span class="time">11:30</span><span class="detail"><b>王子宫殿</b><span>11:55 换岗仪式掐点看。路线技巧：看完赌场坐公交去海洋博物馆方向→基本下坡路。</span><a class="act" href="https://maps.google.com/?q=Palais+Princier+de+Monaco" target="_blank">🗺 导航</a></span></div>
     <div class="timeline-item"><span class="time">12:15</span><span class="detail"><b>港口游艇 + F1 赛道</b><span>沿湾走。⚠️ 摩纳哥消费高，正餐别在这吃。</span></span></div>
@@ -500,7 +540,7 @@ table.da-table td:first-child{font-weight:600;color:var(--no-stone);white-space:
   <div class="card-body">
     <div class="timeline-item"><span class="time">09:00</span><span class="detail"><b>早餐后退房</b><span>行李随身。酒店就在 Grand Arénas 站旁，乘 TER 1 站即到 Saint-Laurent-du-Var（CAP3000），约 3 分钟。</span></span></div>
     <div class="timeline-item"><span class="time">09:15</span><span class="detail"><b>Grand Arénas → Saint-Laurent-du-Var</b><span>TER 约 3 分钟，通票免费。下车步行到 CAP3000。或直接从酒店步行 15 分钟。</span><a class="act" href="https://maps.google.com/?q=CAP3000%2C+Saint-Laurent-du-Var" target="_blank">🗺 CAP3000 导航</a></span></div>
-    <div class="timeline-item"><span class="time">11:00</span><span class="detail"><b>CAP3000 开门</b><span>300+ 店铺。必逛：老佛爷（比市中心大、Jonak Paris 鞋牌、20-40% 折扣）、药妆（满 €100 退税）、Monoprix 超市、尚美 Auberi。</span></span></div>
+    <div class="timeline-item"><span class="time">11:00</span><span class="detail"><b>CAP3000 开门（周六 10:00）</b><span>300+ 店铺。必逛：老佛爷（比市中心大、Jonak Paris 鞋牌、20-40% 折扣）、药妆（满 €100 退税）、Monoprix 超市、尚美 Auberi。</span></span></div>
     <div class="timeline-item"><span class="time">13:00</span><span class="detail"><b>午餐</b><span>CAP3000 内 50 家餐厅，含 15 家海景餐厅。</span></span></div>
     <div class="timeline-item"><span class="time">14:00</span><span class="detail"><b>出发去机场</b><span>打车 5 分钟 / TER 1 站到 NCE。</span></span></div>
     <div class="timeline-item"><span class="time">16:00</span><span class="detail"><b>到 NCE 机场</b><span>值机+安检。退税品随身，到 HEL 再办退税。</span></span></div>
